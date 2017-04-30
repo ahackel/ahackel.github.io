@@ -1,0 +1,32 @@
+<nav class=navbar>
+	<label for="show-nav" class="show-nav">
+		<i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+	</label>
+	<div class="header {% if page.url == '/projects/index.html' %}active{% endif %}">
+		<a href="/">
+			<img src="/img/header.png">
+		</a>
+	</div>
+	<input type="checkbox" id="show-nav" role="button" />
+	<ul>
+		{% for item in site.data.menu %}
+
+			{% if item.icon %}
+				{% capture item_content %} <i class="fa fa-{{ item.icon }} fa-lg" aria-hidden="true"></i>{% endcapture %}
+			{% else %}
+				{% assign item_content = item.title %}
+			{% endif %}
+
+			{% if page.url contains item.url %}
+				{% assign item_class = "item-class active" %}
+			{% else %}
+				{% assign item_class = "item-class" %}
+			{% endif %}
+
+			<li>
+				<a class="{{ item_class }}" href="{{ item.url }}">{{ item_content }}</a>
+			</li>
+		{% endfor %}
+		<input class="search" placeholder="&#xF002;"></input>
+	</ul>
+</nav>

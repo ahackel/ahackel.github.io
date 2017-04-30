@@ -1,0 +1,27 @@
+---
+layout: default
+---
+	<div class="content">
+		<ul class="thumbnails clearfix">
+			{% assign projects_sorted = (site.projects | sort: "year") | reverse %}
+			{% for project in projects_sorted %}
+				{% assign url = project.url | remove: "/index.html" %}
+				<li data-search="{{ project.title }},
+					{{ project.type | slugify }},
+					{{ project.year }},
+					{{ project.tools | join: "," | slugify  }},
+					{{ project.developer | join: "," | slugify  }},
+					{{ project.publisher | join: "," | slugify  }},
+					{{ project.client | join: "," | slugify  }},
+					{{ project.role | join: "," | slugify  }},
+					{{ project.platform | join: "," | slugify  }}">
+					<a href={{ url }}>
+						<img src="{{ url }}/thumb.jpg" />
+						<div class="title">{{ project.title }}</div>
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+	<script src="/js/search.js"></script>

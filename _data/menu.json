@@ -1,0 +1,9 @@
+[
+	{"title": "Client Work", "url": "/projects/?q=client-work", "-icon": "gamepad"},
+	{"title": "Personal Work", "url": "/projects/?q=personal-work", "-icon": "picture-o"},
+	{"title": "About Me", "url": "/about", "-icon": "info"},
+	{"title": "Contact Me", "url": "mailto:mail@andreashackel.de", "icon": "envelope"},
+	{"title": "Twitter", "url": "https://twitter.com/herrvollbaer", "icon": "twitter"},
+	{"title": "GitHub", "url": "https://github.com/ahackel", "icon": "github"},
+	{"title": "LinkedIn", "url": "https://www.linkedin.com/in/andreashackel", "icon": "linkedin"}
+]

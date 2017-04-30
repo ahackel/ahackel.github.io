@@ -1,0 +1,10 @@
+{% if include.tags %}
+<tr>
+	<td>{{ include.label }}</td>
+	<td>
+		{% for tag in include.tags %}
+		<a class="tag" href="/projects/?q={{ tag | slugify }}">{{ tag }}</a>
+		{% endfor %}
+	</td>
+</tr>
+{% endif %}
