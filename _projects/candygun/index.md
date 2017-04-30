@@ -1,5 +1,5 @@
 ---
-published:false
+published: false
 title: Candygun Games
 layout: project
 year: 2010
