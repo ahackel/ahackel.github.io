@@ -12,6 +12,6 @@ images:
   connect4-3.jpg: { width: 1920, height: 1418 }
   thumb.jpg: { width: 640, height: 320 }
 ---
-A [Connect Four](https://en.wikipedia.org/wiki/Connect_Four) game clone written in Javascript. You play against a simple AI.
+A Connect Four game clone written in Javascript. You play against a simple AI.
 
 {% include button.html url="http://connect4.andreashackel.de" title="Play Connect Four" %}

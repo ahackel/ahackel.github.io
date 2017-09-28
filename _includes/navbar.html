@@ -1,14 +1,20 @@
+<input type="checkbox" id="show-nav">
+<label for="show-nav" class="show-nav">
+	<i class="fa fa-bars fa-fw fa-lg" aria-hidden="true"></i>
+</label>
+
 <nav class=navbar>
-	<label for="show-nav" class="show-nav">
-		<i class="fa fa-bars fa-lg" aria-hidden="true"></i>
-	</label>
-	<div class="header {% if page.url == '/projects/index.html' %}active{% endif %}">
-		<a href="/">
-			<img src="/img/header.png">
-		</a>
-	</div>
-	<input type="checkbox" id="show-nav" role="button" />
+
 	<ul>
+		<li class="header {% if page.url == '/projects/index.html' %}active{% endif %}">
+			<a href="/">
+				<img src="/img/header.png">
+			</a>
+		</li>
+	</ul>
+
+	<ul class="collapsable">
+
 		{% for item in site.data.menu %}
 
 			{% if item.icon %}
@@ -27,6 +33,8 @@
 				<a class="{{ item_class }}" href="{{ item.url }}">{{ item_content }}</a>
 			</li>
 		{% endfor %}
-		<input class="search" placeholder="&#xF002;"></input>
+		<li>
+			<input class="search" placeholder="&#xF002;"></input>
+		</li>
 	</ul>
 </nav>

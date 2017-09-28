@@ -46,8 +46,10 @@ def processDir(path):
 			else:
 				im.thumbnail(MAX_IMAGE_SIZE)
 			im.save(imagePath)
+		else:
+			im = Image.open(imagePath)
 
-			meta += '  {0}: {{ width: {1[0]}, height: {1[1]} }}\n'.format(image, im.size)
+		meta += '  {0}: {{ width: {1[0]}, height: {1[1]} }}\n'.format(image, im.size)
 
 	# load content of index file:
 	if os.path.exists(path + "/" + INDEX_FILE):

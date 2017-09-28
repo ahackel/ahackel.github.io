@@ -1,27 +1,46 @@
 ---
 layout: default
 ---
-	<div class="content">
-		<ul class="thumbnails clearfix">
-			{% assign projects_sorted = (site.projects | sort: "year") | reverse %}
-			{% for project in projects_sorted %}
-				{% assign url = project.url | remove: "/index.html" %}
-				<li data-search="{{ project.title }},
-					{{ project.type | slugify }},
-					{{ project.year }},
-					{{ project.tools | join: "," | slugify  }},
-					{{ project.developer | join: "," | slugify  }},
-					{{ project.publisher | join: "," | slugify  }},
-					{{ project.client | join: "," | slugify  }},
-					{{ project.role | join: "," | slugify  }},
-					{{ project.platform | join: "," | slugify  }}">
-					<a href={{ url }}>
-						<img src="{{ url }}/thumb.jpg" />
-						<div class="title">{{ project.title }}</div>
-					</a>
-				</li>
-			{% endfor %}
-		</ul>
-	</div>
+<div class="content-sidebar">
 
-	<script src="/js/search.js"></script>
+	<ul class="thumbnails clearfix">
+		{% assign projects_sorted = site.projects | sort: "year" | reverse %}
+		{% for project in projects_sorted %}
+			{% assign url = project.url | remove: "/index.html" %}
+			<li class="post-item" data-search="{{ project.title }},
+				{{ project.type | slugify }},
+				{{ project.year }},
+				{{ project.tools | join: "," | slugify  }},
+				{{ project.developer | join: "," | slugify  }},
+				{{ project.publisher | join: "," | slugify  }},
+				{{ project.client | join: "," | slugify  }},
+				{{ project.role | join: "," | slugify  }},
+				{{ project.platform | join: "," | slugify  }}">
+				<a href="{{ url }}">
+					<img src="{{ url }}/thumb.jpg" />
+					<article>
+						<h1>{{ project.title | escape }}</h1>
+						{{ project.excerpt }}
+					</article>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+
+<script src="/lib/imagesloaded.pkgd.min.js"></script>
+<script src="/lib/masonry.pkgd.min.js"></script>
+
+<script>
+	var msnry;
+
+	imagesLoaded('.thumbnails', function() {
+		masnry = new Masonry( '.thumbnails', {
+		  itemSelector: '.post-item',
+		  columnWidth: 336,
+		  gutter: 0
+		});
+	});
+</script>
+
+<script src="/js/search.js"></script>

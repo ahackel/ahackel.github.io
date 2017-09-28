@@ -13,6 +13,6 @@ images:
   khunpan3.jpg: { width: 1372, height: 1637 }
   thumb.jpg: { width: 640, height: 319 }
 ---
-A [Khun Pan / Klotski](https://en.wikipedia.org/wiki/Klotski) game clone written in Javascript. It automatically generates levels of specified levels of difficulty and can solve each state.
+A Khun Pan / Klotski game clone written in Javascript. It automatically generates levels of specified levels of difficulty and can solve each state.
 
 {% include button.html url="http://khunpan.andreashackel.de" title="Play Khun Pan" %}

@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<div class="content-sidebar">
+
+	<ul class="post-list thumbnails clearfix">
+	{% for post in site.posts %}
+	  <li>
+		<a class="post-link" href="{{ post.url | relative_url }}">
+			<img src="/projects/candygun/thumb.jpg" />
+			<article>
+				<h1>{{ post.title | escape }}</h1>
+				{{ post.excerpt }}
+			</article>
+		</a>
+	  </li>
+	{% endfor %}
+	</ul>
+
+</div>
+
+  <!--p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p-->

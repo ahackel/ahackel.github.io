@@ -24,10 +24,22 @@ collections:
   projects:
     output: true
     permalink: /:collection/:path.html
+
 markdown: kramdown
-gems:
+kramdown:
+  input: GFM
+
 exclude:
   - Gemfile
   - Gemfile.lock
   - preprocess.py
-permalink: /:title/
+
+permalink: /:year/:month/:day/:title.html/
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts" # previously `post` in Jekyll 2.2.
+    values:
+      layout: "post"
