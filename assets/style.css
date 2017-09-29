@@ -15,7 +15,8 @@
 	--content-margin-top: 0;
 }
 
-@media screen and (max-width: 1359px) {
+@media screen and (max-width: 1359px),
+screen and (max-device-width: 1359px) {
 :root {
 	--max-page-width: 1024px;
 }
@@ -597,14 +598,13 @@ img.me {
 }
 
 @media screen and (max-width: 420px) {
-.gallery {
-	margin: 0;
-}
+	.gallery {
+		margin: 0;
+	}
 
-.gallery li {
-	margin: 0 0 16px;
-}
-
+	.gallery li {
+		margin: 0 0 16px;
+	}
 }
 
 .prev-gallery,
