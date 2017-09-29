@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<input id="slide-sidebar" type="checkbox" role="button" />
+<!--input id="slide-sidebar" type="checkbox" role="button" />
 <label class="gallery-info" for="slide-sidebar"><span><i class="fa fa-info fa-2x fa-fw" aria-hidden="true"></i></span></label>
 
 <script>
@@ -11,32 +11,31 @@ layout: default
 		sessionStorage.setItem('sidebar-collapsed', slide.checked);
 		window.dispatchEvent(new Event('resize'));
 	});
-</script>
+</script-->
 
 
 
-<article class="content-sidebar">
-	<article class="post">
-		<h1>{{ page.title }}</h1>
-		{{ content }}
-		<table>
-			{% include tag.html tag=page.type label='Type' %}
-			{% include date.html tag=page.year label='Year' %}
-			{% include tags.html tags=page.role label='Role' %}
-			{% include tags.html tags=page.developer label='Developer' %}
-			{% include tags.html tags=page.publisher label='Publisher' %}
-			{% include tags.html tags=page.client label="Client" %}
-			{% include tags.html tags=page.tools label='Tools' %}
-			{% include tags.html tags=page.platform label='Platform' %}
-		</table>
-	</article>
-
+<div class="content-sidebar">
+	<div class="inner">
+		<article class="post">
+			<h1>{{ page.title }}</h1>
+			{{ content }}
+			<table>
+				{% include tag.html tag=page.type label='Type' %}
+				{% include date.html tag=page.year label='Year' %}
+				{% include tags.html tags=page.role label='Role' %}
+				{% include tags.html tags=page.developer label='Developer' %}
+				{% include tags.html tags=page.publisher label='Publisher' %}
+				{% include tags.html tags=page.client label="Client" %}
+				{% include tags.html tags=page.tools label='Tools' %}
+				{% include tags.html tags=page.platform label='Platform' %}
+			</table>
+		</article>
+	</div>
 	{% include gallery.html images = page.images %}
 
-	<footer>
-		&copy; 2017, Andreas Hackel
-	</footer>
-</article>
+	{% include footer.html %}
+</div>
 
 <nav>
 	{% assign index = -1 %}
@@ -66,7 +65,7 @@ layout: default
 
 
 
-<script src="/lib/flex-images.js"></script>
+<script src="/assets/lib/flex-images.js"></script>
 
 <script>
 	new flexImages({

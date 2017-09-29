@@ -1,10 +1,11 @@
 ---
 layout: about
 title: About Me
+permalink: /about/
 ---
 # About Me
 
-<img src="../img/andreashackel.png" class="me" />
+<img src="/assets/img/andreashackel.png" class="me" />
 
 My Name is Andreas Hackel. I am a professional graphic artist and game development veteran from Hamburg, Germany. Currently I'm working as Senior Technical Artist at InnoGames GmbH.
 

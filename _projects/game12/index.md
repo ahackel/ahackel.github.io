@@ -5,6 +5,7 @@ layout: project
 year: 2017
 role: [Technical Artist, 3D Artist]
 tools: [3ds Max, ZBrush, Unreal Engine 4, Photoshop, Substance Painter, Substance Designer]
+developer: InnoGames
 url:
 type: Client Work
 images:

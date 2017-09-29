@@ -1,7 +1,4 @@
 source 'https://rubygems.org'
 #gemspec
 
-gem 'jekyll'
-group :jekyll_plugins do
-	gem 'kramdown'
-end
+gem 'github-pages', group: :jekyll_plugins

@@ -1,7 +1,7 @@
 "use strict";
 
 let searchBox = document.querySelector('.search');
-let thumbList = document.querySelector('.thumbnails');
+let thumbList = document.querySelector('.post-list');
 
 let searchString = window.location.search.split('=')[1];
 
@@ -19,7 +19,10 @@ function search(s) {
 		let show = tokens.includes(tokenize(s));
 		//console.log(searchBox.value, href, show)
 		thumb.style.display = (show) ? 'block' : 'none';
+
 	});
+	if (msnry)
+		msnry.layout();
 }
 
 searchBox.addEventListener('keyup', e => {
