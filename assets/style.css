@@ -221,24 +221,27 @@ label.show-nav {
 
 @media screen and (max-width: 1023px){
 	.navbar {
-		position: absolute;
+		position: fixed;
 		height: initial;
 		/* display: none; */
 		margin-left: var(--navbar-height);
 		float: left;
 		width: 100%;
+		transition: left .3s ease-in-out;
 		top: 0;
+		left: 0;
 	}
 
 	label.show-nav {
-		position: absolute;
+		position: fixed;
 		cursor: pointer;
+		transition: left .3s ease-in-out;
 		top: 0;
+		left: 0;
 		line-height: var(--navbar-height);
 		width: var(--navbar-height);
 		float: left;
 		text-align: center;
-		left: 0;
 		display: block;
 		padding: 0;
 		color: #fff;
@@ -251,7 +254,7 @@ label.show-nav {
 		transition: left .3s ease-in-out;
 		width: 80vw;
 		background: var(--bg-color);
-		top: var(--navbar-height);
+		top: 0;
 		position: fixed;
 		overflow: hidden;
 		background: red;
@@ -281,8 +284,12 @@ label.show-nav {
 		left: 0;
 	}
 
+	input[type=checkbox]#show-nav:checked ~ label.show-nav {
+		left: 80vw;
+	}
+
 	input[type=checkbox]#show-nav:checked ~ .navbar {
-		position: fixed;
+		left: 80vw;
 	}
 
 	input[type=checkbox]#show-nav:checked ~ .content-sidebar {
