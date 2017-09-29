@@ -48,9 +48,7 @@ html, body {
 	-webkit-font-smoothing: subpixel-antialiased;
 	text-rendering: optimizeLegibility;
 	height: 100%;
-	/* max-width: var(--max-page-width); */
 	position: relative;
-	overflow-x: hidden;
 }
 
 *:focus {
