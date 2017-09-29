@@ -15,20 +15,19 @@
 	--content-margin-top: 0;
 }
 
-@media screen and (max-width: 1359px),
-screen and (max-device-width: 1359px) {
-:root {
-	--max-page-width: 1024px;
-}
+@media (max-width: 1359px){
+	:root {
+		--max-page-width: 1024px;
+	}
 }
 
-@media screen and (max-width: 1023px) {
+@media (max-width: 1023px) {
 :root {
 	--max-page-width: 688px;
 }
 }
 
-@media screen and (max-width: 687px) {
+@media (max-width: 687px) {
 :root {
 	--thumbnail-width: calc(100% - 16px);
 }
@@ -136,7 +135,7 @@ input[type=checkbox]#show-nav:checked ~ .collapsable{
 	height: var(--navbar-height);
 	/* background: var(--bg-color); */
 	/* z-index: 4; */
-	overflow: hidden;
+	/* overflow: hidden; */
 	max-width: var(--max-page-width);
 	margin: 0 auto;
 	/* position: fixed; */
@@ -220,17 +219,21 @@ label.show-nav {
 	border-radius: 0.25rem;
 }
 
-@media screen and (max-width: 1023px){
+@media (max-width: 1023px){
 	.navbar {
 		position: fixed;
 		height: initial;
 		/* display: none; */
-		margin-left: var(--navbar-height);
+		/* margin-left: var(--navbar-height); */
 		float: left;
 		width: 100%;
 		transition: left .3s ease-in-out;
 		top: 0;
 		left: 0;
+		z-index: 2;
+		background: #aaa;
+		max-width: 100%;
+		padding-left: var(--navbar-height);
 	}
 
 	label.show-nav {
@@ -246,11 +249,12 @@ label.show-nav {
 		display: block;
 		padding: 0;
 		color: #fff;
+		z-index: 3;
 	}
 
 	/*Make dropdown links appear inline*/
 	.navbar .collapsable {
-		position: absolute;
+		/* position: absolute; */
 		left: -80vw;
 		transition: left .3s ease-in-out;
 		width: 80vw;
@@ -442,7 +446,7 @@ td:nth-child(1){
 	/* background: #ccc; */
 }
 
-@media screen and (max-width : 1023px){
+@media (max-width : 1023px){
 	.content-sidebar {
 		/* padding: 0; */
 		position: absolute;
@@ -597,7 +601,7 @@ img.me {
 	height: 100%;
 }
 
-@media screen and (max-width: 420px) {
+@media (max-width: 420px) {
 	.gallery {
 		margin: 0;
 	}
