@@ -1,9 +1,10 @@
 ---
 layout: default
 ---
-<div class="content-sidebar">
+<div class="content content-sidebar">
 
 	<ul class="post-list clearfix">
+		<li class="post-item-sizer"></li>
 		{% assign projects_sorted = site.projects | sort: "year" | reverse %}
 		{% for project in projects_sorted %}
 			{% assign url = project.url | remove: "/index.html" %}
@@ -37,10 +38,11 @@ layout: default
 	imagesLoaded('.post-list', function() {
 		msnry = new Masonry( '.post-list', {
 			itemSelector: '.post-item',
-			columnWidth: 336,
-			gutter: 0
+			columnWidth: '.post-item-sizer',
+			gutter: 0,
+			percentPosition: true
 		});
 	});
 </script>
 
-<script src="/assets/js/search.js"></script>
+<!--script src="/assets/js/search.js"></script-->

@@ -15,7 +15,8 @@ layout: default
 
 
 
-<div class="content-sidebar">
+<div class="content content-sidebar">
+	{% include gallery.html images = page.images %}
 	<div class="inner">
 		<article class="post">
 			<h1>{{ page.title }}</h1>
@@ -32,12 +33,11 @@ layout: default
 			</table>
 		</article>
 	</div>
-	{% include gallery.html images = page.images %}
 
 	{% include footer.html %}
 </div>
 
-<nav>
+<nav class="gallery-nav">
 	{% assign index = -1 %}
 	{% for project in site.projects %}
 		{% if project.url contains page.url %}
