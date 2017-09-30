@@ -29,7 +29,7 @@
 }
 }
 
-@media (max-width: 687px) {
+@media (max-width: 567px) {
 :root {
 	--thumbnail-width: 100%;
 }
@@ -60,7 +60,7 @@ body {
 
 @media (max-width: 687px) {
 html, body {
-	font-size: 80%;
+	font-size: 86.60%;
 }
 }
 
@@ -457,7 +457,7 @@ td:nth-child(1){
 	.content {
 		margin: 0 8px;
 		position: absolute;
-		margin-top: var(--navbar-height);
+		margin-top: calc(var(--navbar-height) - 8px);
 		width: calc(100% - 16px);
 		top: 0;
 		/* float: left; */
