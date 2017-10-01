@@ -42,22 +42,26 @@ html, body {
 	color: #ddd;
 	background: var(--bg-color);
 	padding: 0;
-	margin: 0 auto;
+	margin: 0;
 	letter-spacing: 0.05em;
 	-webkit-font-smoothing: subpixel-antialiased;
 	text-rendering: optimizeLegibility;
-	height: 100%;
-	position: relative;
-	width: 100%;
+	/* height: 100%; */
+	/* position: relative; */
+	/* width: 100%; */
 }
 
 body {
 	overflow-x: hidden;
 }
 
+.no-scroll {
+	overflow: hidden;
+}
+
 @media (max-width: 687px) {
 html, body {
-	font-size: 86.60%;
+	/* font-size: 86.60%; */
 }
 }
 
@@ -230,19 +234,15 @@ label.show-nav {
 @media (max-width: 1023px){
 	.navbar {
 		position: fixed;
-		/* display: none; */
 		margin: 0;
-		/* float: left; */
-		width: 100%;
 		max-width: 100%;
 		transition: left .3s ease-in-out;
 		top: 0;
 		left: 0;
 		z-index: 2;
 		background: var(--bg-color);
-		padding-left: var(--navbar-height);
 		font-size: 16px;
-		right: 0;
+		width: 100vw;
 	}
 
 	label.show-nav {
@@ -274,13 +274,22 @@ label.show-nav {
 		background: var(--selection-color);
 		height: 100vh;
 		overflow-y: scroll;
+		/* overflow-x: hidden; */
 	}
 
 	/*Create vertical spacing*/
 	.navbar li {
-		margin-bottom: 1px;
 		display: table;
 	}
+
+	.navbar li.header {
+		width: 100%;
+		display: block;
+		left: 0;
+		text-align: center;
+		/* position: absolute; */
+	}
+
 	/*Make all menu links full width*/
 	.navbar .collapsable ul li, .navbar .collapsable li a {
 		width: 100%;
@@ -304,11 +313,14 @@ label.show-nav {
 	input[type=checkbox]#show-nav:checked ~ .content {
 		left: var(--slide-menu-width);
 	}
+	input[type=checkbox]#show-nav:checked ~ .content {
+		overflow: hidden;
+	}
 
 }
 
 /* Advanced Checkbox Hack */
-body {/* -webkit-animation: bugfix infinite 1s; */background: #;}
+body {/* -webkit-animation: bugfix infinite 1s; *//* overflow: hidden; */}
 @-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
 
 
@@ -471,6 +483,13 @@ td:nth-child(1){
 	padding: 1em 1em;
 }
 
+@media (max-width: 687px) {
+	.content .inner {
+		font-size: 100%;
+	}
+}
+
+
 .post-navigation {
 	max-width: 800px;
 	margin: 0 auto;
@@ -560,12 +579,6 @@ img.me {
 .post-list li article {
 	background: var(--sidebar-background);
 	/* border-radius: 0 0 1rem 1rem; */
-}
-
-@media (max-width : 1023px){
-	.post-list li article p {
-		/* display: none; */
-	}
 }
 
 .post-list li:hover {
