@@ -31,7 +31,7 @@
 				{% assign item_content = item.title %}
 			{% endif %}
 
-			{% if page.url contains item.url %}
+			{% if page.url == item.url %}
 				{% assign item_class = "item-class active" %}
 			{% else %}
 				{% assign item_class = "item-class" %}

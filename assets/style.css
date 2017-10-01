@@ -61,7 +61,7 @@ body {
 
 @media (max-width: 687px) {
 html, body {
-	/* font-size: 86.60%; */
+	/* font-size: 93.54%; */
 }
 }
 
@@ -170,7 +170,7 @@ label.show-nav {
 }
 
 .navbar li a {
-	padding: 0 16px;
+	padding: 0 8px;
 	color: white;
 	line-height: var(--navbar-height);
 	box-sizing: content-box;
@@ -198,7 +198,7 @@ label.show-nav {
 
 .navbar .header a {
 	line-height: inherit;
-	padding: 12px;
+	padding: 12px 8px;
 	height: var(--navbar-height);
 	box-sizing: border-box;
 	display: inline-block;
@@ -280,6 +280,8 @@ label.show-nav {
 	/*Create vertical spacing*/
 	.navbar li {
 		display: table;
+		width: 100%;
+		/* padding: 8px; */
 	}
 
 	.navbar li.header {
@@ -293,10 +295,14 @@ label.show-nav {
 	/*Make all menu links full width*/
 	.navbar .collapsable ul li, .navbar .collapsable li a {
 		width: 100%;
+		padding: 0 1em;
+		box-sizing: border-box;
 	}
 
 	.navbar .search {
 		width: calc(var(--slide-menu-width) - 32px);
+		margin-left: 16px;
+		float: left;
 	}
 
 	.content {
@@ -455,11 +461,7 @@ td:nth-child(1){
 .content-sidebar {
 	max-width: var(--max-page-width);
 	margin: 0 auto;
-	/* margin-top: -8px; */
-	/* padding: 0 8px; */
-	/* float: left; */
 	box-sizing: border-box;
-	/* background: #ccc; */
 }
 
 @media (max-width : 1023px){
@@ -480,7 +482,7 @@ td:nth-child(1){
 	margin: 0 auto;
 	font-size: 1.25em;
 	line-height: 1.5em;
-	padding: 1em 1em;
+	padding: 1em 0;
 }
 
 @media (max-width: 687px) {
@@ -522,7 +524,7 @@ article.post h3
 }
 
 article.post h1 {
-	font-size: 4em;
+	font-size: 3em;
 	text-align: center;
 }
 

@@ -1,6 +1,7 @@
 [
-	{"title": "Portfolio", "url": "/projects", "-icon": "picture-o"},
-	{"title": "About Me", "url": "/about", "-icon": "info"},
+	{"title": "Blog", "url": "/", "-icon": "picture-o"},
+	{"title": "Portfolio", "url": "/projects/", "-icon": "picture-o"},
+	{"title": "About Me", "url": "/about/", "-icon": "info"},
 	{"title": "Contact Me", "url": "mailto:mail@andreashackel.de", "icon": "envelope"},
 	{"title": "Twitter", "url": "https://twitter.com/herrvollbaer", "icon": "twitter"},
 	{"title": "GitHub", "url": "https://github.com/ahackel", "icon": "github"},
