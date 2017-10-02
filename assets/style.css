@@ -25,7 +25,7 @@
 @media (max-width: 1023px) {
 :root {
 	--thumbnail-width: 50%;
-	--max-page-width: 688px;
+	/* --max-page-width: 688px; */
 }
 }
 
@@ -180,8 +180,7 @@ label.show-nav {
 	font-weight: bold;
 }
 
-.navbar li a:hover,
-.navbar .header a:hover  {
+.navbar li a:hover {
 	text-decoration: none;
 	background: rgba(255,255,255,0.2);
 }
@@ -202,6 +201,10 @@ label.show-nav {
 	height: var(--navbar-height);
 	box-sizing: border-box;
 	display: inline-block;
+}
+
+.navbar li.header a:hover {
+	background: none;
 }
 
 .navbar .header img {
@@ -458,7 +461,7 @@ td:nth-child(1){
 	font-weight: normal;
 }
 
-.content-sidebar {
+.content {
 	max-width: var(--max-page-width);
 	margin: 0 auto;
 	box-sizing: border-box;
@@ -466,10 +469,10 @@ td:nth-child(1){
 
 @media (max-width : 1023px){
 	.content {
-		margin: 0 8px;
+		/* margin: 0 8px; */
 		position: absolute;
-		margin-top: calc(var(--navbar-height) - 8px);
-		width: calc(100% - 16px);
+		margin-top: var(--navbar-height);
+		width: 100%;
 		top: 0;
 		/* float: left; */
 		max-width: 100%;
@@ -489,6 +492,12 @@ td:nth-child(1){
 	.content .inner {
 		font-size: 100%;
 	}
+}
+
+.content-post {
+	background: #eee;
+	max-width: 100%;
+	color: #333;
 }
 
 
@@ -529,7 +538,6 @@ article.post h1 {
 }
 
 .post-list h1 {
-	color: #333;
 	font-size: 1.25rem;
 }
 
@@ -573,25 +581,25 @@ img.me {
 	display: block;
 	width: var(--thumbnail-width);
 	/* border-radius: 1em; */
-	border: transparent solid 8px;
+	border: #333 solid 8px;
 	overflow: hidden;
 	box-sizing: border-box;
+	background: #444;
 }
 
-.post-list li article {
-	background: var(--sidebar-background);
-	/* border-radius: 0 0 1rem 1rem; */
+.post-list p {
+	margin: 0.5em 0 0;
 }
 
 .post-list li:hover {
-	background: var(--sidebar-background);
-	border-color: var(--sidebar-background);
+	background: #555;
+	color: #fff;
 }
 
 .post-list li a {
 	display: inline-block;
 	/* cursor: zoom-in; */
-	color: #333;
+	color: inherit;
 }
 
 .post-list li a:hover {
@@ -602,6 +610,17 @@ img.me {
 	width: 100%;
 	display: block;
 	/* border-radius: 1rem 1rem 0 0; */
+}
+
+@media (max-width : 1023px){
+	.post-list {
+		width: calc(100% - 16px);
+		margin: -8px 8px;
+	}
+
+	.post-list li {
+		/* border: none; */
+	}
 }
 
 /* gallery: */

@@ -18,8 +18,11 @@ email:
 description: > # this means to ignore newlines until "baseurl:"
   Personal homepage of Andreas Hackel.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://andreashackel.de" # the base hostname & protocol for your site, e.g. http://example.com
 # Build settings
+disqus:
+  shortname: andreashackel
+
 collections:
   projects:
     output: true

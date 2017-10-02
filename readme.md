@@ -1,7 +1,8 @@
 # To do
 
-- [ ] include Discus
-- [ ] Blog layout
+- [x] include Discus
+- [x] Blog layout
 - [ ] Blog image location
-- [ ] Same layout for blog and projects
+- [x] Same layout for blog and projects
 - [ ] Blog navigation
+- [ ] categories

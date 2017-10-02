@@ -1,11 +1,12 @@
 ---
 layout: default
 ---
-<div class="content content-sidebar">
+<div class="content">
 
 	<ul class="post-list clearfix">
+		<li class="post-item-sizer"></li>
 	{% for post in site.posts %}
-	  <li class="post-item">
+		<li class="post-item">
 		<a class="post-link" href="{{ post.url | relative_url }}">
 			<img src="/projects/candygun/thumb.jpg" />
 			<article>
@@ -13,7 +14,7 @@ layout: default
 				{{ post.excerpt }}
 			</article>
 		</a>
-	  </li>
+		</li>
 	{% endfor %}
 	</ul>
 
@@ -28,10 +29,9 @@ layout: default
 	imagesLoaded('.post-list', function() {
 		msnry = new Masonry( '.post-list', {
 			itemSelector: '.post-item',
-			columnWidth: 336,
-			gutter: 0
+			columnWidth: '.post-item-sizer',
+			gutter: 0,
+			percentPosition: true
 		});
 	});
 </script>
-
-<script src="/assets/js/search.js"></script>
