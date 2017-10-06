@@ -334,9 +334,9 @@ body {/* -webkit-animation: bugfix infinite 1s; *//* overflow: hidden; */}
 
 
 a.tag {
-	background: #555;
-	color: #ccc;
-	padding: 3px 10px;
+	background: rgb(85, 85, 85);
+	color: #ddd;
+	padding: 2px 6px;
 	border-radius: 4px;
 	/*font-size: 80%;*/
 	font-weight: normal;
@@ -701,4 +701,10 @@ img.me {
 .site-footer {
 	text-align: center;
 	padding: 8px;
+}
+
+.octicon {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentColor;
 }

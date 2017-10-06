@@ -8,18 +8,28 @@ comments: true
 
 		<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-		  <header class="post-header">
-			<h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-			<p class="post-meta">
-				<time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-				{% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-				{{ page.date | date: date_format }}
-				</time>
-		  </header>
+		 	<header class="post-header">
+				<h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+				<p class="post-meta">
+					<time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+					{% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+					{{ page.date | date: date_format }}
+					</time>
+				</p>
+		 	</header>
 
 		  <div class="post-content" itemprop="articleBody">
 			{{ content }}
 		  </div>
+
+
+		  <footer>
+			  <p class="post-meta">
+				  {% for tag in page.tags %}
+					  <a class="tag" href="/projects/?q={{ include.tag | slugify }}">{{ tag }}</a>
+				  {% endfor %}
+			  </p>
+		  </footer>
 
 		  {% if site.disqus.shortname %}
 			{% include disqus_comments.html %}
@@ -37,5 +47,4 @@ comments: true
 
 		{% include footer.html %}
 	</div>
-
 </div>

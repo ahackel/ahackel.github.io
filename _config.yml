@@ -20,6 +20,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://andreashackel.de" # the base hostname & protocol for your site, e.g. http://example.com
 # Build settings
+encoding: utf-8
 disqus:
   shortname: andreashackel
 
