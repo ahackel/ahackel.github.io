@@ -8,7 +8,7 @@ layout: default
 	{% for post in site.posts %}
 		<li class="post-item">
 		<a class="post-link" href="{{ post.url | relative_url }}">
-			<img src="/projects/candygun/thumb.jpg" />
+			<img src="{{ post.thumbnail }}" />
 			<article>
 				<h1>{{ post.title | escape }}</h1>
 				{{ post.excerpt }}

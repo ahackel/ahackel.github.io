@@ -1,4 +1,10 @@
-.highlight table td { padding: 5px; }
+.highlight table {
+	margin: 0;
+}
+.highlight table td {
+	padding: 0 1em 0 0;
+	line-height: 1.5em;
+}
 .highlight table pre { margin: 0; }
 .highlight .c, .highlight .cd {
   color: #75715e;
@@ -213,4 +219,20 @@
   padding: 1em;
   border-radius: var(--border-radius);
   tab-size: 2em;
+}
+.highlight .lineno {
+	color: #888;
+}
+.highlighter-rouge {
+	margin: 1.5em 0;
+}
+code.highlighter-rouge {
+	background: #eee;
+	padding: 0 5px 2px;
+	border-radius: var(--border-radius);
+	position: relative;
+	top: -1px;
+	font-size: 90%;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
 }
