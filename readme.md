@@ -5,8 +5,10 @@
 - [x] Blog image location
 - [x] Same layout for blog and projects
 - [ ] Blog navigation
-- [ ] categories
-- [ ] Github to andreashackel.de
+- [x] categories
+- [x] Github to andreashackel.de
+- [ ] Tag archives
+- [ ] Search
 - [ ] Game12 images
 - [ ] 5 Blog articles
 - [ ] Link to other shader articles
@@ -35,3 +37,8 @@
 
 - code font needs to be smaller then regular text font in an article
 - You need to explicitly set theme: Minima to avoid the Github.pages gem to clutter you site with files
+
+### 2017-10-20
+
+- Github adds another `<div class="highlight">` around code in posts
+- To display images at retina resolution you need to specify width / height in html or css
