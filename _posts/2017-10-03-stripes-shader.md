@@ -96,11 +96,9 @@ We need to change the fragment shader:
 ``` c
 fixed4 frag (v2f i) : SV_Target
 {
-	fixed4 color;
-	float pos = i.uv.x * 10;				
+	float pos = i.uv.x * 10;
 	fixed value = fmod((int)pos, 2);
-	color = value;
-	return color;
+	return value;
 }
 ```
 
@@ -125,7 +123,7 @@ int _Tiling;
 and replace the hard coded tiling value in the fragment shader:
 
 ``` c
-float pos = i.uv.x * _Tiling;				
+float pos = i.uv.x * _Tiling;
 ```
 
 ## Direction
@@ -133,7 +131,7 @@ float pos = i.uv.x * _Tiling;
 Next we want to control the direction of our stripes by another parameter. We will use a little trick here to avoid complex rotation transformation. The idea is to blend between vertical and horizontal stripes. How do we get horizontal stripes? Just use the y value of the uvs instead of x in the fragment shader:
 
 ``` c
-float pos = i.uv.y * _Tiling;				
+float pos = i.uv.y * _Tiling;
 ```
 
 To specify an arbitrary direction we first declare a new parameter `_Direction`
@@ -150,11 +148,9 @@ and blend between x and y:
 ``` c
 fixed4 frag (v2f i) : SV_Target
 {
-	fixed4 color;
 	float pos = lerp(i.uv.x, i.uv.y, _Direction) * _Tiling;
 	fixed value = fmod((int)pos, 2);
-	color = value;
-	return color;
+	return value;
 }
 ```
 
@@ -162,15 +158,190 @@ And now we have stripes at any direction!
 
 ![UVs shader](/assets/2017-10-03-stripes-shader/stripes2.png)
 
-You will notice a little downside of this method: diagonal stripes will be a bit thicker than horizontal or vertical stripes. Of course there is a way to compensate this but for simplicity we keep it like this for now.
+**Note:** *You will notice a little downside of this method: diagonal stripes will be a bit thicker than horizontal or vertical stripes. Of course there is a way to compensate this but for simplicity's sake we keep it like this for now.*
 
-## colors
+## Colors
 
-It's time to add some color! We declare two color parameters:
+It's time to add some color! First we declare two color parameters and the corresponding variables:
 
 ``` c
 Properties {
+	_Color1 ("Color 1", Color) = (0,0,0,1)
+	_Color2 ("Color 2", Color) = (1,1,1,1)
 	_Tiling ("Tiling", Range(1, 500)) = 10
 	_Direction ("Direction", Range(0, 1)) = 0
 }
 ```
+``` c
+fixed4 _Color1;
+fixed4 _Color2;
+int _Tiling;
+float _Direction;
+```
+
+and in the fragment shader we blend between the two colors based on `value`:
+
+``` c
+fixed4 frag (v2f i) : SV_Target
+{
+	float pos = lerp(i.uv.x, i.uv.y, _Direction) * _Tiling;
+	fixed value = fmod((int)pos, 2);
+	return lerp(_Color1, _Color2, value);
+}
+```
+
+Now we have colored stripes:
+
+![UVs shader](/assets/2017-10-03-stripes-shader/stripes3.png)
+
+## Warping
+
+Now we add some warping to the stripes. For this we need to more parameters:
+
+``` c
+Properties {
+	_Color1 ("Color 1", Color) = (0,0,0,1)
+	_Color2 ("Color 2", Color) = (1,1,1,1)
+	_Tiling ("Tiling", Range(1, 500)) = 10
+	_Direction ("Direction", Range(0, 1)) = 0
+	_WarpScale ("Warp Scale", Range(0, 1)) = 0
+	_WarpTiling ("Warp Tiling", Range(1, 10)) = 1
+}
+```
+``` c
+fixed4 _Color1;
+fixed4 _Color2;
+int _Tiling;
+float _Direction;
+float _WarpScale;
+float _WarpTiling;
+```
+
+and then we modify the fragment shader as follows:
+
+``` c
+fixed4 frag (v2f i) : SV_Target
+{
+	const float PI = 3.14159;
+
+	float pos1 = lerp(i.uv.x, i.uv.y, _Direction);
+	float pos2 = lerp(i.uv.y, 1 - i.uv.x, _Direction);
+
+	pos1 += sin(pos2 * _WarpTiling * PI * 2) * _WarpScale;
+	pos1 += _WarpScale;
+	pos1 *= _Tiling;
+
+	fixed value = fmod((int)pos1, 2);
+	return lerp(_Color1, _Color2, value);
+}
+```
+
+Now step by step. First we define a constant `PI` that we will use later to tranform uvs into radians as arguments for `sin`:
+``` c
+const float PI = 3.14159;
+```
+
+We rename our pos variable to pos1 because we need another position which should always be orthogonal to pos1. For example if `_Direction` is zero `pos1` would be `i.uv.x` which is a gradient along the x-axis and we would get vertical stripes. And `pos2` would be `i.uv.y` which is gradient along the y-axis - orthogonal to the first one. We need this second gradient because we want to warp along the axis orthogonal to to the stripes.
+
+``` c
+float pos1 = lerp(i.uv.x, i.uv.y, _Direction);
+float pos2 = lerp(i.uv.y, 1 - i.uv.x, _Direction);
+```
+
+![UVs shader](/assets/2017-10-03-stripes-shader/pos.png)
+
+The next line adds an offset to `pos1` which does the warping. It's just a sine function which takes `pos2` as an argument. Because `sin` wants its arguments in radian units we multiply `pos2` by 2 PI so there is exactly one sine wave along the pos2-axis. To allow tiling of the sine wave we multiply also by `_WarpTiling`. We multiply result of the sine function by `_WarpScale` so we can scale the amount of warping along the pos1-axis.
+
+``` c
+pos1 += sin(pos2 * _WarpTiling * PI * 2) * _WarpScale;
+```
+
+The following line adds another offset. We need this so pos1 never becomes negative. Negative values would add some artifacts to warped stripes at the origin of the pos1-axis.
+
+``` c
+pos1 += _WarpScale;
+```
+
+In the last line we multiply `pos1` by the tiling parameter.
+
+``` c
+pos1 *= _Tiling;
+```
+
+This is the full code of the stripes shader and the final result:
+
+``` c
+Shader "Unlit/Stripes"
+{
+    Properties {
+		_Color1 ("Color 1", Color) = (0,0,0,1)
+		_Color2 ("Color 2", Color) = (1,1,1,1)
+		_Tiling ("Tiling", Range(1, 500)) = 10
+		_Direction ("Direction", Range(0, 1)) = 0
+		_WarpScale ("Warp Scale", Range(0, 1)) = 0
+		_WarpTiling ("Warp Tiling", Range(1, 10)) = 1
+	}
+
+	SubShader
+	{
+
+		Pass
+		{
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+
+			#include "UnityCG.cginc"
+
+			fixed4 _Color1;
+			fixed4 _Color2;
+			int _Tiling;
+			float _Direction;
+			float _WarpScale;
+			float _WarpTiling;
+
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				float2 uv : TEXCOORD0;
+			};
+
+			struct v2f
+			{
+				float2 uv : TEXCOORD0;
+				float4 vertex : SV_POSITION;
+			};
+
+			v2f vert (appdata v)
+			{
+				v2f o;
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.uv = v.uv;
+				return o;
+			}
+
+			fixed4 frag (v2f i) : SV_Target
+			{
+				const float PI = 3.14159;
+
+				float pos1 = lerp(i.uv.x, i.uv.y, _Direction);
+				float pos2 = lerp(i.uv.y, 1 - i.uv.x, _Direction);
+
+				pos1 += _WarpScale;
+				pos1 += sin(pos2 * _WarpTiling * PI * 2) * _WarpScale;
+				pos1 *= _Tiling;
+
+				fixed value = fmod((int)pos1, 2);
+				return lerp(_Color1, _Color2, value);
+			}
+			ENDCG
+		}
+	}
+}
+```
+
+![Final Stripes](/assets/2017-10-03-stripes-shader/final.png)
+
+Here you can find a [Unity Package of the shader and an example scene]().
+
+And that's all folks! I hope you learned something new and have fun playing around with the shader!
