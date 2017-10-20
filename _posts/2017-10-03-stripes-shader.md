@@ -224,14 +224,15 @@ fixed4 frag (v2f i) : SV_Target
 {
 	const float PI = 3.14159;
 
-	float pos1 = lerp(i.uv.x, i.uv.y, _Direction);
-	float pos2 = lerp(i.uv.y, 1 - i.uv.x, _Direction);
+	float2 pos;
+	pos.x = lerp(i.uv.x, i.uv.y, _Direction);
+	pos.y = lerp(i.uv.y, 1 - i.uv.x, _Direction);
 
-	pos1 += sin(pos2 * _WarpTiling * PI * 2) * _WarpScale;
-	pos1 += _WarpScale;
-	pos1 *= _Tiling;
+	pos.x += sin(pos.y * _WarpTiling * PI * 2) * _WarpScale;
+	pos.x += _WarpScale;
+	pos.x *= _Tiling;
 
-	fixed value = fmod((int)pos1, 2);
+	fixed value = fmod((int)pos.x, 2);
 	return lerp(_Color1, _Color2, value);
 }
 ```
@@ -241,31 +242,32 @@ Now step by step. First we define a constant `PI` that we will use later to tran
 const float PI = 3.14159;
 ```
 
-We rename our pos variable to pos1 because we need another position which should always be orthogonal to pos1. For example if `_Direction` is zero `pos1` would be `i.uv.x` which is a gradient along the x-axis and we would get vertical stripes. And `pos2` would be `i.uv.y` which is gradient along the y-axis - orthogonal to the first one. We need this second gradient because we want to warp along the axis orthogonal to to the stripes.
+The type of pos has been changed to float2. This has been done because we need both components x and y of the rotated uvs. Before we added the rotation `pos` was just the x component of the uvs (multiplied by the tiling factor). So now if `Direction` was zero pos would be equal to `i.uv`. If `Direction` has a different value `pos` would contain the rotated uvs. We need the y component of `pos` because we want to calculate the warping based on the y (or v) component of the uvs. In other words: The stripes should be warped along the axis orthogonal to their direction.
 
 ``` c
-float pos1 = lerp(i.uv.x, i.uv.y, _Direction);
-float pos2 = lerp(i.uv.y, 1 - i.uv.x, _Direction);
+float2 pos;
+pos.x = lerp(i.uv.x, i.uv.y, _Direction);
+pos.y = lerp(i.uv.y, 1 - i.uv.x, _Direction);
 ```
 
 ![UVs shader](/assets/2017-10-03-stripes-shader/pos.png)
 
-The next line adds an offset to `pos1` which does the warping. It's just a sine function which takes `pos2` as an argument. Because `sin` wants its arguments in radian units we multiply `pos2` by 2 PI so there is exactly one sine wave along the pos2-axis. To allow tiling of the sine wave we multiply also by `_WarpTiling`. We multiply result of the sine function by `_WarpScale` so we can scale the amount of warping along the pos1-axis.
+The next line adds an offset to `pos.x` which does the warping. It's just a sine function which takes `pos.y` as an argument. Because `sin` wants its arguments in radian units we multiply `pos.y` by 2 PI so there is exactly one sine wave along the length of 1 uv. To allow tiling of the sine wave we multiply also by `_WarpTiling`. We multiply result of the sine function by `_WarpScale` so we can scale the amount of warping along the pos.x-axis.
 
 ``` c
-pos1 += sin(pos2 * _WarpTiling * PI * 2) * _WarpScale;
+pos.x += sin(pos.y * _WarpTiling * PI * 2) * _WarpScale;
 ```
 
-The following line adds another offset. We need this so pos1 never becomes negative. Negative values would add some artifacts to warped stripes at the origin of the pos1-axis.
+The following line adds another offset. We need this so pos1 never becomes negative. Negative values would add some artifacts to warped stripes at the origin of the pos.x-axis.
 
 ``` c
-pos1 += _WarpScale;
+pos.x += _WarpScale;
 ```
 
-In the last line we multiply `pos1` by the tiling parameter.
+In the last line we multiply `pos.x` by the tiling parameter.
 
 ``` c
-pos1 *= _Tiling;
+pos.x *= _Tiling;
 ```
 
 This is the full code of the stripes shader and the final result:
@@ -324,14 +326,15 @@ Shader "Unlit/Stripes"
 			{
 				const float PI = 3.14159;
 
-				float pos1 = lerp(i.uv.x, i.uv.y, _Direction);
-				float pos2 = lerp(i.uv.y, 1 - i.uv.x, _Direction);
+				float2 pos;
+				pos.x = lerp(i.uv.x, i.uv.y, _Direction);
+				pos.y = lerp(i.uv.y, 1 - i.uv.x, _Direction);
 
-				pos1 += _WarpScale;
-				pos1 += sin(pos2 * _WarpTiling * PI * 2) * _WarpScale;
-				pos1 *= _Tiling;
+				pos.x += _WarpScale;
+				pos.x += sin(pos.y * _WarpTiling * PI * 2) * _WarpScale;
+				pos.x *= _Tiling;
 
-				fixed value = fmod((int)pos1, 2);
+				fixed value = fmod((int)pos.x, 2);
 				return lerp(_Color1, _Color2, value);
 			}
 			ENDCG
@@ -342,6 +345,6 @@ Shader "Unlit/Stripes"
 
 ![Final Stripes](/assets/2017-10-03-stripes-shader/final.png)
 
-Here you can find a [Unity Package of the shader and an example scene]().
+Here you can find a [Unity Package of the shader and an example scene](/assets/2017-10-03-stripes-shader/stripes_shader.unitypackage).
 
 And that's all folks! I hope you learned something new and have fun playing around with the shader!
