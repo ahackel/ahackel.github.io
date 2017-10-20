@@ -210,7 +210,7 @@
 .highlight .nt {
   color: #f92672;
 }
-.highlight {
+pre.highlight {
   font-size: 0.75em;
   line-height: 1.5em;
   color: #ddd;
