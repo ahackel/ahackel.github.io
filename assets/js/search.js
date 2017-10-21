@@ -29,6 +29,6 @@ searchBox.addEventListener('keyup', e => {
 	search(searchBox.value);
 }, false);
 
-searchBox.addEventListener('blur', e => {
-	window.location.search = "q=" + tokenize(searchBox.value);
-}, false);
+// searchBox.addEventListener('blur', e => {
+// 	window.location.search = "q=" + tokenize(searchBox.value);
+// }, false);

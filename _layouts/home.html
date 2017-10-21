@@ -6,7 +6,8 @@ layout: default
 	<ul class="post-list clearfix">
 		<li class="post-item-sizer"></li>
 	{% for post in site.posts %}
-		<li class="post-item">
+		<li class="post-item" data-search="{{ post.title }},
+			{{ post.tags | join: "," | slugify  }}">
 		<a class="post-link" href="{{ post.url | relative_url }}">
 			<img src="{{ post.thumbnail }}" />
 			<article>
@@ -35,3 +36,5 @@ layout: default
 		});
 	});
 </script>
+
+<script src="/assets/js/search.js"></script>
