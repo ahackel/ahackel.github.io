@@ -40,5 +40,4 @@
 
 ### 2017-10-20
 
-- Github adds another `<div class="highlight">` around code in posts
 - To display images at retina resolution you need to specify width / height in html or css

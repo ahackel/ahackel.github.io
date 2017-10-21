@@ -219,14 +219,11 @@ label.show-nav {
 	/* width: 100%; */
 	background: var(--sidebar-background);
 	border: none;
-	color: #eee;
 	font-size: inherit;
 	/* line-height: inherit; */
 	box-sizing: border-box;
 	padding: 4px 8px;
 	-webkit-appearance: none;
-	border-radius: 0px;
-	/* margin-bottom: 10px; */
 	letter-spacing: 0.05em;
 	float: right;
 	margin: 10px;

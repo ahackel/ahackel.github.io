@@ -11,7 +11,7 @@ comments: true
 			<header class="post-header">
 				<p class="post-meta">
 					{% for tag in page.tags %}
-						<a class="tag" href="/projects/?q={{ include.tag | slugify }}">{{ tag | capitalize }}</a>
+						<a class="tag" href="/?q={{ tag | slugify }}">{{ tag | capitalize }}</a>
 					{% endfor %}
 
 					<time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">

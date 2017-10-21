@@ -1,7 +1,7 @@
 "use strict";
 
 let searchBox = document.querySelector('.search');
-let thumbList = document.querySelector('.post-list');
+let postItems = document.querySelectorAll('.post-item');
 
 let searchString = window.location.search.split('=')[1];
 
@@ -14,7 +14,7 @@ function tokenize(s){
 }
 
 function search(s) {
-	Array.from(thumbList.children).forEach(thumb => {
+	postItems.forEach(thumb => {
 		let tokens = thumb.dataset.search.toLowerCase();
 		let show = tokens.includes(tokenize(s));
 		//console.log(searchBox.value, href, show)
