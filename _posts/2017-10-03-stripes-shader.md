@@ -85,24 +85,46 @@ Now you get this:
 
 ![UVs shader](/assets/2017-10-03-stripes-shader/uvs.png)
 
-## Zebra Crossing
+## Gradient
 
-The next step is to calculate stripes from the uvs. We will start with vertical stripes:
+With just a little change we can turn the uvs into a gradient. For this we output the x value of `i.uv`. This will give us a horizontal gradient. If you want a vertical gradient just output `i.uv.y`. The fragment shader of the horizontal gradient looks like this:
 
-![UVs shader](/assets/2017-10-03-stripes-shader/stripes1.png)
+``` c
+fixed4 frag (v2f i) : SV_Target
+{
+	return i.uv.x;
+}
+```
 
-We need to change the fragment shader:
+![UVs shader](/assets/2017-10-03-stripes-shader/gradient.png)
+
+## Tiling
+
+The next step is to add some tiling. For this we multiply the uvs by a tiling factor. For now we just hard code a tiling factor of 10. And then we perform a frac operation to let the values repeat once they reach 1:
 
 ``` c
 fixed4 frag (v2f i) : SV_Target
 {
 	float pos = i.uv.x * 10;
-	fixed value = fmod((int)pos, 2);
-	return value;
+	return frac(pos);
 }
 ```
 
-Let's see what's going on here. First we take the x value of the uvs which reaches from 0 to 1. We multiply it by the number of stripes we want to have and store it in a variable `pos`. In the next line we convert the value of `pos` into an int. This transforms the gradient we have seen in the uvs shader into steps from 0 to 9. Then we perform a modulo operation on the steps which gives us the alternating pattern.
+![UVs shader](/assets/2017-10-03-stripes-shader/tiling.png)
+
+## Zebra Crossing
+
+How do we get stripes from a gradient? Just truncate the decimals of the result of the frac operation. And also we need to add a treshold value between 0 and 1. Every value below the threshold will become 0 after the modulo and every value above will become 1. To get even stripes we set the threshold to 0.5. Later we can use this this to specify the thickness ratio of white and black stripes.
+
+``` c
+fixed4 frag (v2f i) : SV_Target
+{
+	float pos = i.uv.x * 10;
+	return floor(frac(pos) + 0.5);
+}
+```
+
+![UVs shader](/assets/2017-10-03-stripes-shader/stripes1.png)
 
 ## Tiling parameter
 
@@ -149,7 +171,7 @@ and blend between x and y:
 fixed4 frag (v2f i) : SV_Target
 {
 	float pos = lerp(i.uv.x, i.uv.y, _Direction) * _Tiling;
-	fixed value = fmod((int)pos, 2);
+	fixed value = floor(frac(pos) + 0.5);
 	return value;
 }
 ```
@@ -185,7 +207,7 @@ and in the fragment shader we blend between the two colors based on `value`:
 fixed4 frag (v2f i) : SV_Target
 {
 	float pos = lerp(i.uv.x, i.uv.y, _Direction) * _Tiling;
-	fixed value = fmod((int)pos, 2);
+	fixed value = floor(frac(pos) + 0.5);
 	return lerp(_Color1, _Color2, value);
 }
 ```
@@ -229,10 +251,9 @@ fixed4 frag (v2f i) : SV_Target
 	pos.y = lerp(i.uv.y, 1 - i.uv.x, _Direction);
 
 	pos.x += sin(pos.y * _WarpTiling * PI * 2) * _WarpScale;
-	pos.x += _WarpScale;
 	pos.x *= _Tiling;
 
-	fixed value = fmod((int)pos.x, 2);
+	fixed value = floor(frac(pos.x) + 0.5);
 	return lerp(_Color1, _Color2, value);
 }
 ```
@@ -256,12 +277,6 @@ The next line adds an offset to `pos.x` which does the warping. It's just a sine
 
 ``` c
 pos.x += sin(pos.y * _WarpTiling * PI * 2) * _WarpScale;
-```
-
-The following line adds another offset. We need this so pos1 never becomes negative. Negative values would add some artifacts to warped stripes at the origin of the pos.x-axis.
-
-``` c
-pos.x += _WarpScale;
 ```
 
 In the last line we multiply `pos.x` by the tiling parameter.
@@ -330,11 +345,10 @@ Shader "Unlit/Stripes"
 				pos.x = lerp(i.uv.x, i.uv.y, _Direction);
 				pos.y = lerp(i.uv.y, 1 - i.uv.x, _Direction);
 
-				pos.x += _WarpScale;
 				pos.x += sin(pos.y * _WarpTiling * PI * 2) * _WarpScale;
 				pos.x *= _Tiling;
 
-				fixed value = fmod((int)pos.x, 2);
+				fixed value = floor(frac(pos.x) + 0.5);
 				return lerp(_Color1, _Color2, value);
 			}
 			ENDCG
