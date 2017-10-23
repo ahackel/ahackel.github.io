@@ -9,7 +9,7 @@ This is the first post of my Unity shaders series. The series is aimed at people
 
 ## Why should you write shaders?
 
-I'm a technical artists in the games industry. Part of my job is to make the surface of real time 3D objects of our games look as good as possible. Shaders play in important role here. They are a powerful tool to create beautiful materials. So I can really encourage everyone who wants to create materials for games to learn to write shaders! And materials are just the beginning. Shaders can also be used for post effects, rendering and tools.
+I'm a technical artists in the games industry. Part of my job is to make the surface of real time 3D objects of our games look as good as possible. Shaders play an important role here. They are a powerful way to create beautiful materials. So I can really encourage everyone who wants to create materials for games to learn to write shaders! And materials are just the beginning. Shaders can also be used for post effects, rendering and tools.
 
 ## Stripes shader
 
@@ -114,7 +114,7 @@ fixed4 frag (v2f i) : SV_Target
 
 ## Zebra Crossing
 
-How do we get stripes from a gradient? Just truncate the decimals of the result of the frac operation. And also we need to add a treshold value between 0 and 1. Every value below the threshold will become 0 after the modulo and every value above will become 1. To get even stripes we set the threshold to 0.5. Later we can use this this to specify the thickness ratio of white and black stripes.
+How do we get stripes from a gradient? Just truncate the decimals of the result of the frac operation. And also we need to add a treshold value between 0 and 1. Every value below the threshold will become 0 after the frac and every value above will become 1. To get even stripes we set the threshold to 0.5. Later we can use this this to specify the thickness ratio of white and black stripes.
 
 ``` c
 fixed4 frag (v2f i) : SV_Target
@@ -263,7 +263,7 @@ Now step by step. First we define a constant `PI` that we will use later to tran
 const float PI = 3.14159;
 ```
 
-The type of pos has been changed to float2. This has been done because we need both components x and y of the rotated uvs. Before we added the rotation `pos` was just the x component of the uvs (multiplied by the tiling factor). So now if `Direction` was zero pos would be equal to `i.uv`. If `Direction` has a different value `pos` would contain the rotated uvs. We need the y component of `pos` because we want to calculate the warping based on the y (or v) component of the uvs. In other words: The stripes should be warped along the axis orthogonal to their direction.
+The type of `pos` has been changed to float2. This has been done because we need both components x and y of the rotated uvs. Before we added the rotation `pos` was just the x component of the uvs (multiplied by the tiling factor). So now if `Direction` was zero pos would be equal to `i.uv`. If `Direction` has a different value `pos` would contain the rotated uvs. We need the y component of `pos` because we want to calculate the warping based on the y (or v) component of the uvs. In other words: The stripes should be warped along the axis orthogonal to their direction.
 
 ``` c
 float2 pos;
@@ -284,6 +284,8 @@ In the last line we multiply `pos.x` by the tiling parameter.
 ``` c
 pos.x *= _Tiling;
 ```
+
+## All together
 
 This is the full code of the stripes shader and the final result:
 
