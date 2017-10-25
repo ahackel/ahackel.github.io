@@ -9,9 +9,48 @@ In this post we will develop the [stripes shader]({% post_url 2017-10-03-stripes
 
 ![Final Pattern](/assets/2017-10-19-pattern-shader/final.png)
 
+## Full rotation
+
+In the stripes shader we used a trick to rotate the stripes: We just blended between horizontal and vertical stripes. This is valid and works quite fast but I'd like to show you how to implement a full rotation about any angle. This also has the benefit of not affecting the thickness of the stripes when you change the direction.
+
+How do you rotate a point in 2D? [Googling for "2D Rotation"](https://www.siggraph.org/education/materials/HyperGraph/modeling/mod_tran/2drota.htm) gives the answer on the first search result:
+
+```
+x' = x cos f - y sin f
+y' = y cos f + x sin f
+```
+
+so let's use this knowledge and write a function for our shader that rotates a point in 2D:
+
+``` c
+float2 rotatePoint(float2 pt, float2 center, float angle) {
+	float sinAngle = sin(angle);
+	float cosAngle = cos(angle);
+	pt -= center;
+	float2 r;
+	r.x = pt.x * cosAngle - pt.y * sinAngle;
+	r.y = pt.x * sinAngle + pt.y * cosAngle;
+	return r;
+}
+```
+
+Change the fragment shader:
+
+``` c
+//float2 pos;
+//pos.x = lerp(i.uv.x, i.uv.y, _Direction);
+//pos.y = lerp(i.uv.y, 1 - i.uv.x, _Direction);
+
+float2 pos = rotatePoint(i.uv.xy, float2(0.5, 0.5), _Direction * 2 * PI);
+```
+
+And now we can rotate our stripes about 360 degrees!
+
+**Note:** *Since `sin`and `cos` are expensive operations you might still want to keep the old version which blends horizontal and vertical stripes if your shader needs to be fast.*
+
 ## More Colors!
 
-The first option we will add is to specify up to four colors. These are the parameters:
+The next option we will add is to specify up to four colors. These are the parameters:
 
 ``` c
 Properties {
