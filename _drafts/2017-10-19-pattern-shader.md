@@ -1,7 +1,7 @@
 ---
 title: "Pattern Shader"
-tags: unity shader
-category: shader
+tags: tech-art unity shader
+category: tech-art
 thumbnail: /assets/2017-10-19-pattern-shader/final.png
 comments: true
 ---

@@ -1,8 +1,8 @@
 ---
 title: "Stripes Shader - Part 1"
-tags: shader unity
-category: shader
-thumbnail: /assets/2017-10-03-stripes-shader/final.png
+tags: tech-art shader unity
+category: tech-art
+thumbnail: /assets/2017-10-03-stripes-shader-1/final.png
 comments: true
 ---
 This is the first post of my Unity shaders series. The series is aimed at people who have a little bit experience with writing shaders in Unity but I will try to explain everything so beginners can follow, too. Also I want to show you all the little tricks I learned and I will keep everything clean and simple.
