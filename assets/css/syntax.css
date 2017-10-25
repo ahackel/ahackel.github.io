@@ -218,7 +218,8 @@ pre.highlight {
   overflow: auto;
   padding: 1em;
   border-radius: var(--border-radius);
-  tab-size: 2em;
+  -moz-tab-size: 4;
+  tab-size: 4;
 }
 .highlight .lineno {
 	color: #888;
