@@ -1,11 +1,11 @@
 ---
 title: "Pattern Shader"
-tags: shader unity
+tags: unity shader
 category: shader
 thumbnail: /assets/2017-10-19-pattern-shader/final.png
 comments: true
 ---
-In this post we will develop the [stripes shader]({% post_url 2017-10-03-stripes-shader %}) further and add another mode that allows us to render checker patterns.
+In this post we will develop the [stripes shader]({% post_url 2017-10-03-stripes-shader-1 %}) further and add another mode that allows us to render checker patterns.
 
 ![Final Pattern](/assets/2017-10-19-pattern-shader/final.png)
 
@@ -30,6 +30,7 @@ float2 rotatePoint(float2 pt, float2 center, float angle) {
 	float2 r;
 	r.x = pt.x * cosAngle - pt.y * sinAngle;
 	r.y = pt.x * sinAngle + pt.y * cosAngle;
+	r += center;
 	return r;
 }
 ```
@@ -47,6 +48,27 @@ float2 pos = rotatePoint(i.uv.xy, float2(0.5, 0.5), _Direction * 2 * PI);
 And now we can rotate our stripes about 360 degrees!
 
 **Note:** *Since `sin`and `cos` are expensive operations you might still want to keep the old version which blends horizontal and vertical stripes if your shader needs to be fast.*
+
+## Shifting the width of stripes
+
+Until now all stripes have the same width. We will add a new parameter to shift the width and replace the hardcoded value of 0.5:
+
+``` c
+_WidthShift ("Width Shift", Range(0, 1)) = 0.5
+```
+``` c
+float _WidthShift;
+```
+
+...and change the fragment shader:
+
+``` c
+fixed value = floor(frac(pos.x) + _WidthShift);
+```
+
+Now we can change the thickness of stripes:
+
+![Final Pattern](/assets/2017-10-19-pattern-shader/width-shift.png)
 
 ## More Colors!
 
@@ -82,3 +104,16 @@ In the Unity inspector of the shader the color section will look like this:
 ![Final Pattern](/assets/2017-10-19-pattern-shader/colors-inspector.png){:width="325px"}
 
 **Note:** *The inspector always shows all four colors even if you set "Number of Colors" to a value lower than 4. The only way to change this is to write a [custom shader GUI](https://docs.unity3d.com/Manual/SL-CustomShaderGUI.html). In this example we won't do this.*
+
+In the fragment shader we change the last lines like this:
+
+``` c
+fixed value = floor((frac(pos.x) + _WidthShift) * _NumColors);
+value = min(value, _NumColors - 1);
+switch (value) {
+	case 3: return _Color4;
+	case 2: return _Color3;
+	case 1: return _Color2;
+	default: return _Color1;
+}
+```

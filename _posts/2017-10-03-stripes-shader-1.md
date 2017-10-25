@@ -1,5 +1,5 @@
 ---
-title: "Stripes shader"
+title: "Stripes Shader - Part 1"
 tags: shader unity
 category: shader
 thumbnail: /assets/2017-10-03-stripes-shader/final.png
@@ -7,19 +7,19 @@ comments: true
 ---
 This is the first post of my Unity shaders series. The series is aimed at people who have a little bit experience with writing shaders in Unity but I will try to explain everything so beginners can follow, too. Also I want to show you all the little tricks I learned and I will keep everything clean and simple.
 
-## Why should you write shaders?
+## Why Should You Write Shaders?
 
 I'm a technical artists in the games industry. Part of my job is to make the surface of real time 3D objects of our games look as good as possible. Shaders play an important role here. They are a powerful way to create beautiful materials. So I can really encourage everyone who wants to create materials for games to learn to write shaders! And materials are just the beginning. Shaders can also be used for post effects, rendering and tools.
 
-## Stripes shader
+## Stripes Shader
 
 Today I will show you how to create a simple stripes shader in Unity. The final shader will look like this:
 
-![Final Stripes](/assets/2017-10-03-stripes-shader/final.png)
+![Final Stripes](/assets/2017-10-03-stripes-shader-1/final.png)
 
 Quite hypnotic, isn't it? An example of how such a shader can be used is the hills of the wonderful game [Tiny Wings](http://www.andreasilliger.com/) by Andreas Illiger.
 
-## Getting started
+## Getting Started
 
 I don't start at zero here. So if you are new at shaders have a look at [writing shaders](https://docs.unity3d.com/Manual/ShadersOverview.html) in the Unity docs. This gives you a very nice starting point.
 
@@ -68,7 +68,7 @@ Shader "Unlit/NewUnlitShader"
 }
 ```
 
-## UVs shader
+## UVs Shader
 
 Now we will change the simple unlit shader so it renders the texture coordinates aka uvs as colors. We need to modify the fragment shader like this:
 
@@ -83,7 +83,7 @@ fixed4 frag (v2f i) : SV_Target
 
 Now you get this:
 
-![UVs shader](/assets/2017-10-03-stripes-shader/uvs.png)
+![UVs shader](/assets/2017-10-03-stripes-shader-1/uvs.png)
 
 ## Gradient
 
@@ -96,7 +96,7 @@ fixed4 frag (v2f i) : SV_Target
 }
 ```
 
-![UVs shader](/assets/2017-10-03-stripes-shader/gradient.png)
+![UVs shader](/assets/2017-10-03-stripes-shader-1/gradient.png)
 
 ## Tiling
 
@@ -110,7 +110,7 @@ fixed4 frag (v2f i) : SV_Target
 }
 ```
 
-![UVs shader](/assets/2017-10-03-stripes-shader/tiling.png)
+![UVs shader](/assets/2017-10-03-stripes-shader-1/tiling.png)
 
 ## Zebra Crossing
 
@@ -124,9 +124,9 @@ fixed4 frag (v2f i) : SV_Target
 }
 ```
 
-![UVs shader](/assets/2017-10-03-stripes-shader/stripes1.png)
+![UVs shader](/assets/2017-10-03-stripes-shader-1/stripes1.png)
 
-## Tiling parameter
+## Tiling Parameter
 
 Now let's make the tiling a parameter so it can be tweaked. First add a property block to the shader:
 
@@ -178,7 +178,7 @@ fixed4 frag (v2f i) : SV_Target
 
 And now we have stripes at any direction!
 
-![UVs shader](/assets/2017-10-03-stripes-shader/stripes2.png)
+![UVs shader](/assets/2017-10-03-stripes-shader-1/stripes2.png)
 
 **Note:** *You will notice a little downside of this method: diagonal stripes will be a bit thicker than horizontal or vertical stripes. Of course there is a way to compensate this but for simplicity's sake we keep it like this for now.*
 
@@ -214,7 +214,7 @@ fixed4 frag (v2f i) : SV_Target
 
 Now we have colored stripes:
 
-![UVs shader](/assets/2017-10-03-stripes-shader/stripes3.png)
+![UVs shader](/assets/2017-10-03-stripes-shader-1/stripes3.png)
 
 ## Warping
 
@@ -271,7 +271,7 @@ pos.x = lerp(i.uv.x, i.uv.y, _Direction);
 pos.y = lerp(i.uv.y, 1 - i.uv.x, _Direction);
 ```
 
-![UVs shader](/assets/2017-10-03-stripes-shader/pos.png)
+![UVs shader](/assets/2017-10-03-stripes-shader-1/pos.png)
 
 The next line adds an offset to `pos.x` which does the warping. It's just a sine function which takes `pos.y` as an argument. Because `sin` wants its arguments in radian units we multiply `pos.y` by 2 PI so there is exactly one sine wave along the length of 1 uv. To allow tiling of the sine wave we multiply also by `_WarpTiling`. We multiply result of the sine function by `_WarpScale` so we can scale the amount of warping along the pos.x-axis.
 
@@ -285,7 +285,7 @@ In the last line we multiply `pos.x` by the tiling parameter.
 pos.x *= _Tiling;
 ```
 
-## All together
+## All Together
 
 This is the full code of the stripes shader and the final result:
 
@@ -359,7 +359,7 @@ Shader "Unlit/Stripes"
 }
 ```
 
-![Final Stripes](/assets/2017-10-03-stripes-shader/final.png)
+![Final Stripes](/assets/2017-10-03-stripes-shader-1/final.png)
 
 Here you can find a [Unity Package of the shader and an example scene](/assets/2017-10-03-stripes-shader/stripes_shader.unitypackage).
 
