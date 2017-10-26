@@ -1,13 +1,13 @@
 ---
-title: "Pattern Shader"
+title: "Stripes Shader - Part 2"
 tags: tech-art unity shader
 category: tech-art
-thumbnail: /assets/2017-10-19-pattern-shader/final.png
+thumbnail: /assets/2017-10-19-stripes-shader-2/final.png
 comments: true
 ---
 In this post we will develop the [stripes shader]({% post_url 2017-10-03-stripes-shader-1 %}) further and add another mode that allows us to render checker patterns.
 
-![Final Pattern](/assets/2017-10-19-pattern-shader/final.png)
+![Final Pattern](/assets/2017-10-19-stripes-shader-2/final.png)
 
 ## Full rotation
 
@@ -68,7 +68,7 @@ fixed value = floor(frac(pos.x) + _WidthShift);
 
 Now we can change the thickness of stripes:
 
-![Final Pattern](/assets/2017-10-19-pattern-shader/width-shift.png)
+![Final Pattern](/assets/2017-10-19-stripes-shader-2/width-shift.png)
 
 ## More Colors!
 
@@ -101,15 +101,15 @@ float _WarpTiling;
 
 In the Unity inspector of the shader the color section will look like this:
 
-![Final Pattern](/assets/2017-10-19-pattern-shader/colors-inspector.png){:width="325px"}
+![Final Pattern](/assets/2017-10-19-stripes-shader-2/colors-inspector.png){:width="325px"}
 
 **Note:** *The inspector always shows all four colors even if you set "Number of Colors" to a value lower than 4. The only way to change this is to write a [custom shader GUI](https://docs.unity3d.com/Manual/SL-CustomShaderGUI.html). In this example we won't do this.*
 
 In the fragment shader we change the last lines like this:
 
 ``` c
-fixed value = floor((frac(pos.x) + _WidthShift) * _NumColors);
-value = min(value, _NumColors - 1);
+int value = floor((frac(pos.x) + _WidthShift) * _NumColors);
+value = clamp(value, 0, _NumColors - 1);
 switch (value) {
 	case 3: return _Color4;
 	case 2: return _Color3;
@@ -117,3 +117,21 @@ switch (value) {
 	default: return _Color1;
 }
 ```
+
+What has changed? First we multiply the result of `frac(pos.x) + _WidthShift` by `_NumColors` before we pass it to the `floor` function. Before `value` was either 0 or 1. Now it will be a value between 0 and `_NumColors`. In the line we clamp `value` between 0 and `_NumColors - 1`. Otherwise a third color could show up even if you set `_NumColors` to 2. Then we switch between the four colors based on `value`. Using the same method you could add more colors if you want.
+
+This is stripes with four colors:
+
+![Final Pattern](/assets/2017-10-19-stripes-shader-2/4colors.png)
+
+## Width Shift with more colors
+
+To make the width shift work with more colors we need to change the default value of `_WidthShift` to 0 and change the range from -1 to 1:
+
+``` c
+_WidthShift ("Width Shift", Range(-1, 1)) = 0
+```
+
+Width shifting with four colors looks like this:
+
+![Final Pattern](/assets/2017-10-19-stripes-shader-2/width-shift-4colors.png)
