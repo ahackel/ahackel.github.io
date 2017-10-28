@@ -235,4 +235,4 @@ Shader "Unlit/Stripes-2"
 
 Here you can find a [Unity Package and an example scene](/assets/2017-10-19-stripes-shader-2/stripes_shader_2.unitypackage).
 
-That's all folks for now! In the next part we will add new mode to render checker pattern instead stripes with different blend modes. So stay tuned!
+That's all folks for now! In the next part we will add new mode to render checker pattern instead stripes with different blend operations. So stay tuned!
