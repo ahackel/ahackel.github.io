@@ -1,6 +1,6 @@
 ---
-title: "Stripes Shader - Part 1"
-tags: tech-art shader unity
+title: "How To Write a Stripes Shader, Part 1: UVs, Rotation, Warping"
+tags: tech-art how-to shader unity
 category: tech-art
 thumbnail: /assets/2017-10-03-stripes-shader-1/final.png
 comments: true

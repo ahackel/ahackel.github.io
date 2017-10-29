@@ -1,11 +1,11 @@
 ---
-title: "Stripes Shader - Part 2"
-tags: tech-art unity shader
+title: "How to Write a Stripes Shader, Part 2: Rotation, Width Shift and Colors"
+tags: tech-art how-to unity shader
 category: tech-art
 thumbnail: /assets/2017-10-19-stripes-shader-2/width-shift-4colors.png
 comments: true
 ---
-In this post we will develop the [stripes shader]({% post_url 2017-10-03-stripes-shader-1 %}) further. We will add [full rotation](#full-rotation), [width shift](#width-shift) and [more colors](#more-colors).
+In this post we will develop the [basic stripes shader]({% post_url 2017-10-03-stripes-shader-1 %}) further. We will add [full rotation](#full-rotation), [width shift](#width-shift) and [more colors](#more-colors).
 
 With these new features added our stripes shader will look like this:
 
@@ -143,7 +143,7 @@ Here ist the full code of the advanced stripes shader:
 ``` c
 Shader "Unlit/Stripes-2"
 {
-    Properties {
+	Properties {
 		[IntRange] _NumColors ("Number of colors", Range(2, 4)) = 2
 		_Color1 ("Color 1", Color) = (0,0,0,1)
 		_Color2 ("Color 2", Color) = (1,1,1,1)
@@ -167,11 +167,11 @@ Shader "Unlit/Stripes-2"
 
 			#include "UnityCG.cginc"
 
-            int _NumColors;
-            fixed4 _Color1;
-            fixed4 _Color2;
-            fixed4 _Color3;
-            fixed4 _Color4;
+			int _NumColors;
+			fixed4 _Color1;
+			fixed4 _Color2;
+			fixed4 _Color3;
+			fixed4 _Color4;
 			int _Tiling;
 			float _WidthShift;
 			float _Direction;
