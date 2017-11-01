@@ -41,8 +41,10 @@
 				<a class="{{ item_class }}" href="{{ item.url }}">{{ item_content }}</a>
 			</li>
 		{% endfor %}
+		{% if page.search %}
 		<li>
 			<input class="search" placeholder="&#xF002;"></input>
 		</li>
+		{% endif %}
 	</ul>
 </nav>
