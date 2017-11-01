@@ -57,6 +57,7 @@ body {
 
 .no-scroll {
 	overflow: hidden;
+	position: fixed;
 }
 
 @media (max-width: 687px) {
@@ -321,6 +322,7 @@ label.show-nav {
 	}
 	input[type=checkbox]#show-nav:checked ~ .content {
 		overflow: hidden;
+		/* position: relative; */
 	}
 
 }
@@ -467,9 +469,9 @@ td:nth-child(1){
 @media (max-width : 1023px){
 	.content {
 		/* margin: 0 8px; */
-		position: absolute;
+		position: relative;
 		margin-top: var(--navbar-height);
-		width: 100%;
+		width: 100vw;
 		top: 0;
 		/* float: left; */
 		max-width: 100%;
