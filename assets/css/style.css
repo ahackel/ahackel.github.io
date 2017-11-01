@@ -233,7 +233,7 @@ label.show-nav {
 
 @media (max-width: 1023px){
 	.navbar {
-		position: fixed;
+		position: absolute;
 		margin: 0;
 		max-width: 100%;
 		transition: left .3s ease-in-out;
@@ -246,7 +246,7 @@ label.show-nav {
 	}
 
 	label.show-nav {
-		position: fixed;
+		/* position: fixed; */
 		cursor: pointer;
 		transition: left .3s ease-in-out;
 		top: 0;
@@ -532,6 +532,11 @@ article .post-meta {
 	color: #aaa;
 	/* font-style: italic; */
 	/* text-align: center; */
+	line-height: 2em;
+}
+
+time {
+	white-space: nowrap;
 }
 
 article.post h1,
@@ -630,6 +635,11 @@ img.me {
 
 	.post-list li {
 		/* border: none; */
+	}
+
+	article.post h1 {
+		font-size: 1.75em;
+		text-align: center;
 	}
 }
 
