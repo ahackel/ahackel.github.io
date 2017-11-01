@@ -41,3 +41,7 @@
 ### 2017-10-20
 
 - To display images at retina resolution you need to specify width / height in html or css
+
+### 2017-11-01
+
+- To access your local Jekyll server from your mobile device, add host: 0.0.0.0 to _config.yml: https://stackoverflow.com/questions/16608466/connect-to-a-locally-built-jekyll-server-using-mobile-devices-in-the-lan
