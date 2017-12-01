@@ -632,7 +632,7 @@ img.me {
 @media (max-width : 1023px){
 	.post-list {
 		width: calc(100% - 16px);
-		margin: -8px 8px;
+		margin: -8px 8px 8px;
 	}
 
 	.post-list li {

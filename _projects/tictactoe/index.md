@@ -12,4 +12,4 @@ images:
 ---
 A Tic Tac Toe game clone written in Javascript. You play against a simple AI.
 
-{% include button.html url="http://tictactoe.andreashackel.de" title="Play Tic Tac Toe" %}
+{% include button.html url="http://andreashackel.de/tictactoe" title="Play Tic Tac Toe" %}

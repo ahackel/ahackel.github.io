@@ -14,4 +14,4 @@ images:
 ---
 A Connect Four game clone written in Javascript. You play against a simple AI.
 
-{% include button.html url="http://connect4.andreashackel.de" title="Play Connect Four" %}
+{% include button.html url="http://andreashackel.de/connect4" title="Play Connect Four" %}

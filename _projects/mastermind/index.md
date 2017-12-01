@@ -13,4 +13,4 @@ images:
 ---
 A Mastermind game clone written in Javascript.
 
-{% include button.html url="http://mastermind.andreashackel.de" title="Play Mastermind" %}
+{% include button.html url="http://andreashackel.de/mastermind" title="Play Mastermind" %}

@@ -15,4 +15,4 @@ images:
 ---
 A Khun Pan / Klotski game clone written in Javascript. It automatically generates levels of specified levels of difficulty and can solve each state.
 
-{% include button.html url="http://khunpan.andreashackel.de" title="Play Khun Pan" %}
+{% include button.html url="http://andreashackel.de/khunpan" title="Play Khun Pan" %}

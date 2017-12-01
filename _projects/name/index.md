@@ -12,3 +12,5 @@ images:
   thumb.jpg: { width: 640, height: 320 }
 ---
 A name generator written in javascript. It can generate (mostly) German names and variations of these.
+
+{% include button.html url="http://andreashackel.de/name" title="Run Name Generator" %}
