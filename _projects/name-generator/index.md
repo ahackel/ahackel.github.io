@@ -15,4 +15,4 @@ A name generator written in javascript. It can generate (mostly) German names an
 
 {% include button.html url="http://andreashackel.de/name-generator" title="Run Name Generator" %}
 
-[Source on GitHub](https://github.com/ahackel/tilt)
+[Source on GitHub](https://github.com/ahackel/name-generator)
