@@ -13,16 +13,12 @@ layout: default
 	});
 </script-->
 
+<script src="https://viewer.marmoset.co/main/marmoset.js"></script>
 
 
 <div class="content">
 	<ul class="post-list clearfix">
 		<li class="post-item-sizer"></li>
-		{% for model in page.models %}
-			<li class="post-item">
-				<iframe width="100%" height="200" src="https://sketchfab.com/models/{{ model }}/embed?camera=0&ui_infos=0&ui_controls=0&ui_stop=0" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
-			</li>
-		{% endfor %}
 	</ul>
 
 	{% include gallery.html images = page.images %}
@@ -45,6 +41,37 @@ layout: default
 
 	{% include footer.html %}
 </div>
+
+<script>
+	//marmoset.noUserInterface = true;
+	var gallery = document.getElementsByClassName('gallery')[0];
+	var models = ['{{ page.models | join: ', ' }}'];
+	var msetViewers = [];
+	for (model of models) {
+		var w = gallery.clientWidth - 16;
+		var h = w * 9 / 16;
+		var myviewer = new marmoset.WebViewer( w, h, model );
+		msetViewers.push(myviewer);
+		var li = document.createElement('li');
+		if (gallery.firstChild)
+			gallery.insertBefore(li, gallery.firstChild);
+		else
+			gallery.appendChild(li);
+		li.appendChild( myviewer.domRoot );
+		myviewer.loadScene();
+	}
+
+	function resizeViewers() {
+		for (viewer of msetViewers) {
+			var w = gallery.clientWidth - 16;
+			var h = w * 9 / 16;
+			viewer.resize(w, h);
+		}
+	}
+
+	window.addEventListener('resize', resizeViewers);
+	//marmoset.embed( '{{ model }}', { width: 800, height: 600, autoStart: true, fullFrame: false, pagePreset: false } );
+</script>
 
 <nav class="gallery-nav">
 	{% assign index = -1 %}
@@ -71,22 +98,6 @@ layout: default
 		<i class="fa fa-times fa-2x fa-fw" aria-hidden="true"></i>
 	</a>
 </nav>
-
-<script src="/assets/lib/imagesloaded.pkgd.min.js"></script>
-<script src="/assets/lib/masonry.pkgd.min.js"></script>
-
-<script>
-	var msnry;
-
-	imagesLoaded('.post-list', function() {
-		msnry = new Masonry( '.post-list', {
-			itemSelector: '.post-item',
-			columnWidth: '.post-item-sizer',
-			gutter: 0,
-			percentPosition: true
-		});
-	});
-</script>
 
 
 <script src="/assets/lib/flex-images.js"></script>
