@@ -13,4 +13,6 @@ images:
 ---
 A name generator written in javascript. It can generate (mostly) German names and variations of these.
 
-{% include button.html url="http://andreashackel.de/name" title="Run Name Generator" %}
+{% include button.html url="http://andreashackel.de/name-generator" title="Run Name Generator" %}
+
+[Source on GitHub](https://github.com/ahackel/tilt)
