@@ -13,6 +13,11 @@ layout: default
 	});
 </script-->
 
+<script>
+
+var msetModels = ['{{ page.models | join: "', '" }}'];
+</script>
+
 <script src="https://viewer.marmoset.co/main/marmoset.js"></script>
 
 
@@ -42,36 +47,7 @@ layout: default
 	{% include footer.html %}
 </div>
 
-<script>
-	//marmoset.noUserInterface = true;
-	var gallery = document.getElementsByClassName('gallery')[0];
-	var models = ['{{ page.models | join: ', ' }}'];
-	var msetViewers = [];
-	for (model of models) {
-		var w = gallery.clientWidth - 16;
-		var h = w * 9 / 16;
-		var myviewer = new marmoset.WebViewer( w, h, model );
-		msetViewers.push(myviewer);
-		var li = document.createElement('li');
-		if (gallery.firstChild)
-			gallery.insertBefore(li, gallery.firstChild);
-		else
-			gallery.appendChild(li);
-		li.appendChild( myviewer.domRoot );
-		myviewer.loadScene();
-	}
-
-	function resizeViewers() {
-		for (viewer of msetViewers) {
-			var w = gallery.clientWidth - 16;
-			var h = w * 9 / 16;
-			viewer.resize(w, h);
-		}
-	}
-
-	window.addEventListener('resize', resizeViewers);
-	//marmoset.embed( '{{ model }}', { width: 800, height: 600, autoStart: true, fullFrame: false, pagePreset: false } );
-</script>
+<script src="/assets/js/marmorset-viewer.js"></script>
 
 <nav class="gallery-nav">
 	{% assign index = -1 %}

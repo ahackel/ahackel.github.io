@@ -15,7 +15,7 @@ images:
   thumb.jpg: { width: 640, height: 319 }
   Wallset6.jpg: { width: 1920, height: 1080 }
 models:
-  - chest.mview
+- chest.mview
 ---
 Game12 is the working title of a game I worked on at InnoGames. Unfortunately the project was cancelled in 2017.
 
