@@ -11,11 +11,20 @@ for (model of msetModels) {
     gallery.appendChild(li);
 
   var size = calculateSize(li);
-  var myviewer = new marmoset.WebViewer( size.w, size.h, model );
-  msetViewers.push(myviewer);
-  li.appendChild( myviewer.domRoot );
+  //var myviewer = new marmoset.WebViewer( size.w, size.h, model );
+  //msetViewers.push(myviewer);
+  //li.appendChild( myviewer.domRoot );
 
-  myviewer.loadScene();
+  marmoset.fetchThumbnail( model,
+    function(img){
+      console.log(img);
+    },
+    function(msg){
+      console.log(msg);
+    },
+  );
+
+  //myviewer.loadScene();
 }
 
 function calculateSize(li) {
@@ -35,5 +44,5 @@ function resizeViewers() {
   }
 }
 
-window.addEventListener('resize', resizeViewers);
+//window.addEventListener('resize', resizeViewers);
 //marmoset.embed( '{{ model }}', { width: 800, height: 600, autoStart: true, fullFrame: false, pagePreset: false } );
