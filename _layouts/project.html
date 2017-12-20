@@ -13,6 +13,11 @@ layout: default
 	});
 </script-->
 
+<script>
+
+var msetModels = ['{{ page.models | join: "', '" }}'];
+</script>
+
 <script src="https://viewer.marmoset.co/main/marmoset.js"></script>
 
 
@@ -46,6 +51,7 @@ layout: default
 	{% include footer.html %}
 </div>
 
+<<<<<<< HEAD
 <script>
 	//marmoset.noUserInterface = true;
 	var gallery = document.getElementsByClassName('gallery')[0];
@@ -78,6 +84,9 @@ layout: default
 	window.addEventListener('resize', resizeViewers);
 	//marmoset.embed( '{{ model }}', { width: 800, height: 600, autoStart: true, fullFrame: false, pagePreset: false } );
 </script>
+=======
+<script src="/assets/js/marmorset-viewer.js"></script>
+>>>>>>> 0f6ee1964897c11de277335080341ab2511b3884
 
 <nav class="gallery-nav">
 	{% assign index = -1 %}
