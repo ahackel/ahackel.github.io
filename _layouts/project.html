@@ -21,11 +21,15 @@ layout: default
 		<li class="post-item-sizer"></li>
 	</ul>
 
-	{% include gallery.html images = page.images %}
 	<div class="inner">
 		<article class="post">
 			<h1>{{ page.title }}</h1>
 			{{ content }}
+		</article>
+	</div>
+	{% include gallery.html images = page.images %}
+	<div class="inner">
+		<article>
 			<table>
 				{% include tag.html tag=page.type label='Type' %}
 				{% include date.html tag=page.year label='Year' %}
@@ -48,6 +52,8 @@ layout: default
 	var models = ['{{ page.models | join: ', ' }}'];
 	var msetViewers = [];
 	for (model of models) {
+		if (!model)
+			continue;
 		var w = gallery.clientWidth - 16;
 		var h = w * 9 / 16;
 		var myviewer = new marmoset.WebViewer( w, h, model );
