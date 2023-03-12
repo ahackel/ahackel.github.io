@@ -1,0 +1,55 @@
+<nav>
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+  <ul class="menu">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<style>
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    font-size: 1.2em;
+  }
+  
+  .menu-icon {
+    cursor: pointer;
+    font-size: 2em;
+  }
+  
+  .menu {
+    display: none;
+    flex-direction: column;
+    background-color: #333;
+    padding: 20px;
+    margin: 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+  }
+  
+  .menu li {
+    margin: 10px 0;
+  }
+  
+  .menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+  
+  #menu-toggle:checked + .menu {
+    display: flex;
+    z-index: 1;
+  }
+  
+</style>

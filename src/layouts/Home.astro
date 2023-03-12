@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import image from '../images/andreashackel.png';
+import Portrait from '../components/Portrait.astro';
+---
+
+<Layout title="Andreas Hackel">
+    <article>
+        <h1>Welcome</h1>
+        <Portrait src={image} />
+        <p>
+            <slot />
+        </p>
+    </article>
+</Layout>
+
+<style>
+    article {
+        padding: 1rem;
+        max-width: 50rem;
+        margin: auto;
+		font-size: 1.5em;
+		line-height: 2em;
+		text-align: center;
+    }
+</style>

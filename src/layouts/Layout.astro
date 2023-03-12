@@ -1,0 +1,98 @@
+---
+import Navbar from '../components/Navbar.astro';
+
+export interface Props {
+	title: string;
+	style?: "dark" | "bright";
+}
+
+const { title, style = "dark" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class={style}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Navbar style={style} />
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
+<style is:global>
+	:root {
+		--max-page-width: 1344px;
+		--bg-color: #222;
+		--link-color: #dd4c4f;
+		--selection-color: #dd4c4f;
+		--button-color: var(--selection-color);
+		--navbar-height: 56px;
+		--font-color: #ccc;
+		--heading-color: #fff;
+		--code-background: #444;
+		--sidebar-width: 365px;
+		--sidebar-display: block;
+		--sidebar-position: inherit;
+		--sidebar-margin-top: 0;
+		--thumbnail-width: 320px;
+		--content-margin-left: var(--sidebar-width);
+		--content-margin-top: 0;
+		--slide-menu-width: 20em;
+		--border-radius: 6px;
+	}
+	html, body {
+		font-family: "Avenir", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 16px;
+		line-height: 1.4em;
+		color: var(--font-color);
+		background: var(--bg-color);
+		padding: 0;
+		margin: 0;
+		/* letter-spacing: 0.05em; */
+		-webkit-font-smoothing: subpixel-antialiased;
+		text-rendering: optimizeLegibility;
+		position: absolute;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+	main {
+		/* display: flex; */
+	}
+	h1, h2, h3 {
+		line-height: 1.25em;
+	}
+	h1 {
+		text-align: center;
+		font-size: 2.5em;
+		color: var(--heading-color);
+	}
+	img.me {
+        max-width: 50%;
+        margin: 0 auto;
+        display: block;
+        border-radius: 100%;
+    }
+	.bright {
+		--bg-color: #fff;
+		--font-color: #333;
+	}
+	.bright .navbar img {
+        filter: invert() contrast(0.6);
+    }
+	a {
+		color: var(--link-color);
+		text-decoration: none;
+		font-weight: 500;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+</style>

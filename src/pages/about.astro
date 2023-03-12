@@ -1,0 +1,48 @@
+---
+const title = "About";
+
+import Layout from '../layouts/Layout.astro';
+import image from '../images/andreashackel.png';
+import Grid from '../components/Grid.astro';
+import Portrait from '../components/Portrait.astro';
+import Tag from '../components/Tag.astro';
+
+const experience = [
+    "2016 - today | InnoGames GmbH - Technical Artist",
+    "2011 - 2016  | Candygun Games UG - Art Director / Shareholder",
+    "2004 - 2009  | Replay Studios GmbH - Lead / Technical Artist",
+    "2002 - 2003  | Graphic Designer (freelancer)",
+    "2000 - 2002  | Powderworks GmbH - 3D Artist",
+    "1998 - 2000  | Eidos Interactive GmbH - Web Designer",
+    "2013 - 2016  | Graphic Designer (freelancer)"
+];
+
+const education = [
+    "1997 – 2000  | HTK (Hamburg technical art school)",
+    "             | Graduated with honors as Communication / Screen Designer"
+];
+---
+
+<Layout title="Andreas Hackel">
+    <article>
+        <h1>About Me</h1>
+        <Portrait src={image} />
+        <grid />
+        <p>My Name is Andreas Hackel. I am a professional graphic artist and game development veteran from Hamburg, Germany. Currently I'm working as Technical Artist and Unity expert at InnoGames GmbH.
+        </p>
+
+        <h2>Professional Experience</h2>
+        <Grid data={experience} />   
+
+        <h2>Education</h2>
+        <Grid data={education} />
+    </article>
+</Layout>
+
+<style>
+    article {
+        padding: 1em;
+        max-width: 50em;
+        margin: auto;
+    }
+</style>

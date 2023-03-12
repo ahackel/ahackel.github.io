@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Tag from '../../components/Tag.astro';
+import { getCollection, CollectionEntry } from 'astro:content';
+import TagList from '../../components/TagList.astro';
+import { excludeDrafts } from '../../js/utils';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('projects', excludeDrafts);
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"projects">;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { title, type, date, tools, role, platforms, client, developer, images } = entry.data;
+---
+<Layout title={title}>
+  <article>
+    <div class="details">
+      {images?.map(src => <img src={"/images/" + src} />)}
+    </div>
+    <div class="overview">
+      <h1>{title}</h1>
+      <Content />
+      <div class="grid">
+        <div>Type</div><div><Tag name={type} /></div>
+        <div>Year</div><div><Tag name={date.getFullYear().toString()} /></div>
+        <div>Role</div><div><Tag name={role} /></div>
+        {client && <div>Client</div><div><Tag name={client} /></div>}
+        {developer && <div>Developer</div><div><Tag name={developer} /></div>}
+        {tools && <div>Tools</div><div><TagList tags={tools} /></div>}
+        {platforms && <div>Platform</div><div><TagList tags={platforms} /></div>}
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style is:global>
+  article {
+    max-width: 100rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px 1.25rem;
+  }
+
+  article img {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    display: block;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+
+  .details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+
+  .overview {
+    flex: 0 0 30%;
+    padding-left: 1.25rem;
+  }
+
+  .overview h1 {
+    text-align: left;
+    margin: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 1rem;
+    margin-top: 1rem;
+  }
+</style>

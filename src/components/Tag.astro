@@ -1,0 +1,31 @@
+---
+import { slugify } from '../js/utils';
+
+export interface Props {
+    name: string;
+}
+
+const { name } = Astro.props;
+const slug = slugify(name);
+---
+<a href={`/tags/${slug}`}>{name}</a>
+
+<style>
+    a {
+        background: #dd4c4f;
+        color: #fff;
+        padding: 1px 6px;
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        font-weight: normal;
+        white-space: nowrap;
+        margin-right: 0.5em;
+        font-size: 14px;
+        opacity: 0.85;
+    }
+
+    a:hover {
+        opacity: 1;
+        text-decoration: none;
+    }
+</style>

@@ -1,0 +1,48 @@
+---
+export interface Props {
+	title: string;
+	href: string;
+	img: string;
+}
+
+const { href, title, body, img } = Astro.props;
+---
+
+<a class="card" href={href}>
+	<img src={img} />
+	<article>
+		<h3>{title}</h3>
+		<slot />
+	</article>
+</a>
+
+<style>
+    .card {
+        background-color: rgba(128,128,128,0.1);
+        color: var(--font-color);
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card:hover{
+        text-decoration: none;
+        background-color: rgba(128,128,128,0.2);
+    }
+
+    .card article {
+        margin: 1em;
+    }
+
+    .card img{
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    .card h3 {
+        margin: 8px 0;
+        color: var(--heading-color)
+    }
+</style>

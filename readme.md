@@ -1,49 +1,54 @@
-# To do
+# Astro Starter Kit: Basics
 
-- [x] include Discus
-- [x] Blog layout
-- [x] Blog image location
-- [x] Same layout for blog and projects
-- [ ] Blog navigation
-- [x] categories
-- [x] Github to andreashackel.de
-- [ ] Tag archives
-- [ ] Search
-- [ ] Game12 images
-- [ ] 5 Blog articles
-- [ ] Link to other shader articles
+```
+npm create astro@latest -- --template basics
+```
 
-# What I learned
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
 
-### 2017-10-03
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-- Atom Jekyll plugin provides Jekyll server
-- Atom snippets with TAB key
+![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
 
-### 2017-10-06
 
-- It's not possible to have images in post folders in GitHub Pages
+## 🚀 Project Structure
 
-### 2017-10-07
+Inside of your Astro project, you'll see the following folders and files:
 
-- You can post Jekyll Questions to talk.jekyllrb.com
+```
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-### 2017-10-08
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-- to start a blog have at least 5 articles ready
-- There is a shader preview package for Atom: https://atom.io/packages/glsl-preview
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-### 2017-10-10
+Any static assets, like images, can be placed in the `public/` directory.
 
-- code font needs to be smaller then regular text font in an article
-- You need to explicitly set theme: Minima to avoid the Github.pages gem to clutter you site with files
+## 🧞 Commands
 
-### 2017-10-20
+All commands are run from the root of the project, from a terminal:
 
-- To display images at retina resolution you need to specify width / height in html or css
+| Command                | Action                                           |
+| :--------------------- | :----------------------------------------------- |
+| `npm install`          | Installs dependencies                            |
+| `npm run dev`          | Starts local dev server at `localhost:3000`      |
+| `npm run build`        | Build your production site to `./dist/`          |
+| `npm run preview`      | Preview your build locally, before deploying     |
+| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro --help` | Get help using the Astro CLI                     |
 
-### 2017-11-01
+## 👀 Want to learn more?
 
-- To access your local Jekyll server from your mobile device, add host: 0.0.0.0 to _config.yml: https://stackoverflow.com/questions/16608466/connect-to-a-locally-built-jekyll-server-using-mobile-devices-in-the-lan
-
-- bla
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

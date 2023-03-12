@@ -1,0 +1,30 @@
+---
+export interface Props {
+	data: string[];
+}
+
+const { data } = Astro.props;
+---
+<table>
+    {data.map((row) => 
+        <tr>
+            {row.split("|").map(item => <td>{item}</td>) }
+        </tr>
+    )}
+</table>
+
+<style>
+    table, tr, td {
+        padding: 0;
+        vertical-align: top;
+        line-height: 2em;
+        font-weight: bold;
+    }
+    table {
+        margin: 16px 0;
+    }
+    td:first-child {
+        padding-right: 1rem;
+        font-weight: normal;
+    }
+</style>

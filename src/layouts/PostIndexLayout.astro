@@ -1,0 +1,81 @@
+---
+import Layout from './Layout.astro';
+import Card from '../components/Card.astro';
+import TagList from "../components/TagList.astro";
+import { Collection, collections, Post } from '../content/config';
+import { excludeDrafts, getTags } from '../js/utils';
+import { getCollection } from 'astro:content';
+
+export interface Props {
+	title: string;
+    collection?: Collection;
+    filter?: string;
+}
+
+function getAllPosts(): Promise<Post[]>{
+    return Promise.all(
+        Object
+        .keys(collections)
+        .map(c => getCollection(c, excludeDrafts))
+    ).then((allPosts) => allPosts.flat());
+}
+
+function getUrl(post: Post){
+    return post.data.url ?? `/${post.collection}/${post.slug}`;
+}
+
+const { title, collection, filter } = Astro.props;
+const allPosts = collection ? await getCollection(collection, excludeDrafts) : await getAllPosts();
+const filteredPosts = filter ? allPosts.filter((post) => getTags(post.data).includes(filter)) : allPosts;
+const uniqueTags = filter ? [filter] : [...new Set(allPosts.map((post) => getTags(post.data)).flat())];
+
+const mostUsedTags = uniqueTags
+    .map((tag) => ({
+        tag,
+        count: allPosts.filter((post) => getTags(post.data).includes(tag)).length
+    }))
+    .sort((a, b) => b.count - a.count)
+    .map((tag) => tag.tag);
+
+
+// filteredPosts sorted by date:
+const sortedPosts = filteredPosts.sort((a, b) => {
+    const dateA = new Date(a.data.date);
+    const dateB = new Date(b.data.date);
+    return dateB.getTime() - dateA.getTime();
+});
+---
+<Layout title={"Andreas Hackel - " + title}>
+    <div class="tag-container">
+        <TagList tags={mostUsedTags} limit={16} />
+    </div>
+    <div class="post-container">
+    {
+    sortedPosts.map((post) => (
+        <Card title={post.data.title} img={"/images/" + post.data.thumbnail} href={getUrl(post)}>
+            {post.data.description}
+        </Card>
+    ))
+    }
+    </div>
+</Layout>
+
+<style>
+    .tag-container {
+        padding: 0 16px;
+    }
+    .post-container {
+        display: grid;
+        gap: 16px;
+        padding: 0 16px;
+        margin: 16px 0;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    @media (max-width: 768px){
+        .post-container {
+            padding: 0;
+            grid-template-columns: repeat(auto-fit, 100%);
+        }
+    }
+</style>

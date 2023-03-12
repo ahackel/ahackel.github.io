@@ -1,9 +1,0 @@
-<ul class="gallery">
-	{% for image in include.images %}
-	{% unless image[0] contains "thumb." %}
-	<li class="item" data-w="{{ image[1].width }}" data-h="{{ image[1].height }}">
-		<img src="{{ image[0] }}">
-	</li>
-	{% endunless %}
-	{% endfor %}
-</ul>

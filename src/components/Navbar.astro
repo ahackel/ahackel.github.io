@@ -1,0 +1,139 @@
+---
+import headerImage from '../images/header.png';
+import mailIcon from '../images/envelope.svg';
+import githubIcon from '../images/github.svg';
+import linkedinIcon from '../images/linkedin.svg';
+---
+
+<script>
+	var checkbox = document.getElementById("menu-toggle");
+	checkbox.onclick = function(){
+		document.body.classList.toggle("no-scroll", checkbox.checked);
+	}
+</script>
+
+<nav>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+    <a class="header" href="/"><img src={headerImage} alt="Home"></a>
+    <ul class="menu">
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/about">About</a></li>
+        <li class="spacer" />
+        <li><a href="mailto:mail@andreashackel.de"><img src={mailIcon} alt="Email"></a></li>
+        <li><a href="https://github.com/ahackel"><img src={githubIcon} alt="GitHub"></a></li>
+        <li><a href="https://www.linkedin.com/in/andreashackel"><img src={linkedinIcon} alt="LinkedIn"></a></li>    
+    </ul>
+</nav>
+
+<style is:global>
+    .no-scroll {
+        overflow: hidden;
+        position: fixed;
+    }
+
+    nav {
+        line-height: var(--navbar-height);
+        height: var(--navbar-height);
+        max-width: 100%;
+        margin: 0;
+        font-size: 16px;
+        width: 100vw;
+        /* background: var(--bg-color); */
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        box-sizing: border-box;
+        gap: 16px;
+    }
+
+    .menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 16px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .menu li {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    .menu-icon {
+        display: none;
+        cursor: pointer;
+        font-size: 2em;
+    }
+
+    nav a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        color: var(--heading-color);
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    nav a:hover {
+        opacity: 0.8;
+        text-decoration: none;
+    }
+
+    nav img {
+        height: 100%;
+    }
+
+    .spacer {
+        flex-grow: 1;
+    }
+
+    #menu-toggle {
+        display: none;
+    }
+
+    @media (max-width: 768px){
+        .menu {
+            transition: opacity .3s ease-in-out;
+            opacity: 0;
+            width: 100%;
+            background: var(--bg-color);
+            top: var(--navbar-height);
+            position: fixed;
+            overflow: hidden;
+            height: 100vh;
+            overflow-y: scroll;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            z-index: 2;
+        }
+
+        .menu li {
+            height: 56px;
+            padding: 12px 42px;
+            box-sizing: border-box;
+            font-size: 1.5em;
+        }
+
+        .menu-icon {
+            display: flex;
+        }
+
+        .menu li.spacer {
+            display: none;
+        }
+
+        input[type=checkbox]#menu-toggle:checked ~ .menu {
+            opacity: 1;
+        }
+        input[type=checkbox]#menu-toggle:checked main {
+            display: none;
+        }
+    }
+</style>

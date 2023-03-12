@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TagList from '../../components/TagList.astro';
+import { getCollection } from 'astro:content';
+import { excludeDrafts } from '../../js/utils';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog', excludeDrafts);
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Layout title={entry.title}>
+  <article>
+    <header>
+      <time datetime={entry.data.date.toISOString()}>
+        {entry.data.date.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})}
+      </time>
+      <TagList collection='blog' tags={entry.data.tags} />
+      <h1>{entry.data.title}</h1>
+    </header>
+    <Content />
+  </article>
+</Layout>
+
+<style is:global>
+  TagList{
+    float: right;
+  }
+
+  article {
+    padding: 1em;
+    max-width: 50em;
+    margin: auto;
+  }
+
+  article img {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+  }
+
+  article p a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+
+  article > p:nth-child(2) {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  article p code {
+    background: var(--code-background);
+    padding: 0.2em 0.4em;
+    border-radius: var(--border-radius);
+    font-size: 12px;
+    color: #fba457;
+  }
+
+  article .astro-code {
+    padding: 2em;
+    border-radius: var(--border-radius);
+    font-size: 12px;
+  }
+</style>
