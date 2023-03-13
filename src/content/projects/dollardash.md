@@ -1,8 +1,8 @@
 ---
 title: Dollar Dash
 date: 2013-01-01
-role: Art Director
-tools: [3ds Max, Photoshop, Flash, Illustrator, Unreal Engine 3]
+role: Art Director
+tools: [3ds Max, Photoshop, Flash, Illustrator, Unreal Engine 3]
 developer: Candygun Games
 publisher: Kalypso Media
 platform: [Xbox 360, PS3, PC]

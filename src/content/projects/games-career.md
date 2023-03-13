@@ -1,5 +1,5 @@
 ---
-title: Games-Career Trading Cards
+title: Games-Career Trading Cards
 date: 2014-01-01
 role: 2D Artist
 tools: [Manga Studio, Photoshop]

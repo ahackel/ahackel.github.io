@@ -3,8 +3,7 @@ title: Tilt
 date: 2013-01-01
 role: Developer
 tools: [Javascript, Angular JS, PhoneGap, HTML, CSS, Photoshop]
-platform: [iOS, Browser]
-//url: https://www.chromeexperiments.com/experiment/tilt
+platforms: [iOS, Browser]
 type: Personal Work
 description: Tilt is a puzzle game written in Javascript and published on iOS and as a web app. I created all aspects of this game on my own.
 thumbnail: tilt/thumb.jpg

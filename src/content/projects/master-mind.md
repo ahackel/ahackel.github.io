@@ -3,7 +3,7 @@ title: Mastermind
 date: 2015-01-01
 role: Developer
 tools: [Javascript, HTML, CSS]
-platform: Browser
+platforms: [Browser]
 type: Personal Work
 thumbnail: mastermind/thumb.jpg
 description: A Mastermind game clone written in Javascript.

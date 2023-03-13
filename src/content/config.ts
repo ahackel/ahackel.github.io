@@ -21,6 +21,7 @@ const projects = defineCollection({
     date: z.date(),
     role: z.string(),
     developer: z.string().optional(),
+    publisher: z.string().optional(),
     client: z.string().optional(),
     platforms: z.array(z.string()).optional(),
     tools: z.array(z.string()).optional(),

@@ -1,10 +1,10 @@
 ---
 title: Dead Block
 date: 2011-01-01
-role: Art Director
-tools: [3ds Max, Photoshop, Unreal Engine 3]
+role: Art Director
+tools: [3ds Max, Photoshop, Unreal Engine 3]
 developer: Candygun Games
-publisher: Digital Reality
+publisher: Digital Reality
 platforms: [Xbox 360, PS3, PC]
 type: Client Work
 thumbnail: deadblock/thumb.jpg

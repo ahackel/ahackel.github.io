@@ -19,7 +19,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-const { title, type, date, tools, role, platforms, client, developer, videos, images } = entry.data;
+const { title, type, date, tools, role, platforms, client, developer, publisher, videos, images } = entry.data;
 ---
 <Layout title={title}>
   <div class="content-container">
@@ -36,6 +36,7 @@ const { title, type, date, tools, role, platforms, client, developer, videos, im
         <div>Role</div><div><Tag name={role} /></div>
         {client && <div>Client</div><div><Tag name={client} /></div>}
         {developer && <div>Developer</div><div><Tag name={developer} /></div>}
+        {publisher && <div>Publisher</div><div><Tag name={publisher} /></div>}
         {tools && <div>Tools</div><div><TagList tags={tools} /></div>}
         {platforms && <div>Platform</div><div><TagList tags={platforms} /></div>}
       </div>

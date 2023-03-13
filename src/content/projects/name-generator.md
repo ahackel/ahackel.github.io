@@ -3,7 +3,7 @@ title: Name Generator
 date: 2014-01-01
 role: Developer
 tools: [Javascript, HTML, CSS]
-platform: [Browser]
+platforms: [Browser]
 type: Personal Work
 description: A name generator written in javascript. It can generate (mostly) German names and variations of these.
 thumbnail: name-generator/thumb.jpg

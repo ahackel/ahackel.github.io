@@ -9,6 +9,7 @@ export function getTags(collection: any): string[] {
 
     if (collection?.role) result.push(collection.role);
     if (collection?.developer) result.push(collection.developer);
+    if (collection?.publisher) result.push(collection.publisher);
     if (collection?.client) result.push(collection.client);
     if (collection?.date) result.push(collection.date.getFullYear().toString());
     if (collection?.type) result.push(collection.type);

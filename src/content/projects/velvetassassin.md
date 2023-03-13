@@ -1,14 +1,14 @@
 ---
 title: Velvet Assassin
-role: Lead Artist
-tools: [3ds Max, Photoshop, Replay Engine]
+role: Lead Artist
+tools: [3ds Max, Photoshop, Replay Engine]
 date: 2009-01-01
-developer: Replay Studios
-publisher: [SouthPeak, Gamecock, Ubisoft]
+developer: Replay Studios
+publisher: SouthPeak
 platforms: [Xbox 360, PC, Mac OS]
 type: Client Work
 thumbnail: velvetassassin/thumb.jpg
-description: Velvet Assassin is a stealth action game in a WW II setting. Players take control of Violette Summer, a british spy working behind enemy lines.
+description: Velvet Assassin is a stealth action game in a WWII setting. Players take control of Violette Summer, a british spy working behind enemy lines.
 images:
   - velvetassassin/velvet_assassin_000.jpg
   - velvetassassin/velvet_assassin_001.jpg
@@ -24,7 +24,7 @@ images:
   - velvetassassin/velvet_assassin_011.jpg
   - velvetassassin/velvet_assassin_012.jpg
 ---
-Velvet Assassin is a stealth action game in a WW II setting. Players take control of Violette Summer, a british spy working behind enemy lines.
+Velvet Assassin is a stealth action game in a WWII setting. Players take control of Violette Summer, a british spy working behind enemy lines.
 
 I worked in the core team at Replay Studios lead artist on the project. I also created many of the 3D assets and textures. Since we used 3ds Max as our level editor I created our tool set in MaxScript.
 

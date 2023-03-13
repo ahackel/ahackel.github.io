@@ -1,9 +1,9 @@
 ---
 title: Crashday
-role: 3D Artist  
-tools: [3ds Max, Photoshop, Replay Engine]
+role: 3D Artist  
+tools: [3ds Max, Photoshop, Replay Engine]
 date: 2006-01-01
-developer: Replay Studios
+developer: Replay Studios
 publisher: Atari  
 platforms: [PC]
 type: Client Work
