@@ -2,7 +2,7 @@
 draft: true
 title: Retro Invasion
 role: Technical Artist
-tools: [Unreal Engine, 3ds Max, Photoshop, ZBrush, Substance Painter]
+tools: [Unreal Engine 4, 3ds Max, Photoshop, ZBrush, Substance Painter]
 date: 2015-01-01
 developer: Thr3aks GmbH
 platforms: [PC]
