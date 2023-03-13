@@ -1,6 +1,6 @@
 ---
 title: "MicroVegetation In Sunrise Village Part 1 – Rendering"
-tags: [tech-art, how-to, vegetation, unity, InnoGames, C#]
+tags: [Technical Artist, Unity, InnoGames, C#, Vegetation]
 category: tech-art
 thumbnail: 2021-10-04-microvegetation1/thumbnail.png
 comments: true

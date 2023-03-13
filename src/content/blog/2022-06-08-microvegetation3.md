@@ -1,6 +1,6 @@
 ---
 title: "MicroVegetation in Sunrise Village Part 3 – Painting Vegetation"
-tags: [tech-art, how-to, vegetation, unity, InnoGames, C#]
+tags: [Technical Artist, Unity, InnoGames, C#, Vegetation]
 category: tech-art
 thumbnail: 2022-06-08-microvegetation3/thumbnail.gif
 comments: true

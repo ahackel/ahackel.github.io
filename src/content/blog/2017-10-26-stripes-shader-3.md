@@ -1,9 +1,6 @@
 ---
 title: "How to Write a Stripes Shader, Part 3: Checker Patterns"
-tags:
-  - how-to
-  - unity
-  - shader
+tags: [Technical Artist, Shader, Unity]
 category: tech-art
 thumbnail: 2017-10-26-stripes-shader-3/mul.png
 comments: true

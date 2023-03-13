@@ -1,6 +1,6 @@
 ---
 title: "MicroVegetation In Sunrise Village Part 2 – Modify Vegetation at Runtime"
-tags: [tech-art, how-to, vegetation, unity, InnoGames, C#]
+tags: [Technical Artist, Unity, InnoGames, C#, Vegetation]
 category: tech-art
 thumbnail: 2022-02-07-microvegetation2/thumbnail.png
 comments: true

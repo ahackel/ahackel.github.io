@@ -1,6 +1,6 @@
 ---
 title: "Customizing Unity’s Project Window"
-tags: [tech-art, how-to, unity, InnoGames, C#]
+tags: [Technical Artist, Unity, InnoGames, C#]
 category: tech-art
 thumbnail: 2019-09-30-customizing-unitys-project-window/thumbnail.png
 comments: true

@@ -1,6 +1,6 @@
 ---
 title: "HelpURL for Shaders"
-tags: [tech-art, how-to, unity, shader, InnoGames, C#]
+tags: [Technical Artist, Unity, InnoGames, C#, Shader]
 category: tech-art
 thumbnail: 2021-01-25-helpurl-for-shaders/thumbnail.png
 comments: true

@@ -1,6 +1,6 @@
 ---
 title: "How to Write a Stripes Shader, Part 2: Rotation, Width Shift and Colors"
-tags: [tech-art, how-to, unity, shader]
+tags: [Technical Artist, Shader, Unity]
 category: tech-art
 thumbnail: 2017-10-19-stripes-shader-2/width-shift-4colors.png
 comments: true
