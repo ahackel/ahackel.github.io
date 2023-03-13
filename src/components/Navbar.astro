@@ -101,6 +101,7 @@ import linkedinIcon from '../images/linkedin.svg';
         .menu {
             transition: opacity .3s ease-in-out;
             opacity: 0;
+	    display: none;
             width: 100%;
             background: var(--bg-color);
             top: var(--navbar-height);
@@ -108,7 +109,6 @@ import linkedinIcon from '../images/linkedin.svg';
             overflow: hidden;
             height: 100vh;
             overflow-y: scroll;
-            display: flex;
             flex-direction: column;
             gap: 0;
             z-index: 2;
@@ -131,9 +131,7 @@ import linkedinIcon from '../images/linkedin.svg';
 
         input[type=checkbox]#menu-toggle:checked ~ .menu {
             opacity: 1;
-        }
-        input[type=checkbox]#menu-toggle:checked main {
-            display: none;
+	    display: flex;
         }
     }
 </style>
