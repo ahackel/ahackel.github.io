@@ -64,12 +64,13 @@ const sortedPosts = filteredPosts.sort((a, b) => {
     .tag-container {
         padding: 0 16px;
     }
+    
     .post-container {
         display: grid;
         gap: 16px;
         padding: 0 16px;
         margin: 16px 0;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, auto));
     }
 
     @media (max-width: 768px){
