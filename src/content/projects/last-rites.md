@@ -19,5 +19,3 @@ images:
   - last-rites/Wall-Set.jpg
 ---
 Last Rites is a game prototype we created with Unreal Engine 4. As a small team everyone had several roles. I created many 3D models, materials, particle effects, post processes. Learn more about the game on the project website.
-
-http://www.escapeinteractive.de

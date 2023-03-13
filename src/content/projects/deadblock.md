@@ -9,6 +9,8 @@ platforms: [Xbox 360, PS3, PC]
 type: Client Work
 thumbnail: deadblock/thumb.jpg
 description: Dead Block is a zombie-survival game. We created this game in our own little company Candygun Games with a team of only five members.
+videos:
+  - https://www.youtube.com/embed/JipfyN2tgq8
 images:
   - deadblock/foxy.jpg
   - deadblock/all-characters.5.jpg

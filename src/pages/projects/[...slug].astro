@@ -4,6 +4,7 @@ import Tag from '../../components/Tag.astro';
 import { getCollection, CollectionEntry } from 'astro:content';
 import TagList from '../../components/TagList.astro';
 import { excludeDrafts } from '../../js/utils';
+import Video from "../../components/Video.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('projects', excludeDrafts);
@@ -18,11 +19,12 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-const { title, type, date, tools, role, platforms, client, developer, images } = entry.data;
+const { title, type, date, tools, role, platforms, client, developer, videos, images } = entry.data;
 ---
 <Layout title={title}>
-  <article>
+  <div class="content-container">
     <div class="details">
+      {videos?.map(src => <Video src={src} />)}
       {images?.map(src => <img src={"/images/" + src} />)}
     </div>
     <div class="overview">
@@ -38,25 +40,17 @@ const { title, type, date, tools, role, platforms, client, developer, images } =
         {platforms && <div>Platform</div><div><TagList tags={platforms} /></div>}
       </div>
     </div>
-  </article>
+  </div>
 </Layout>
 
 <style is:global>
-  article {
+  .content-container {
     max-width: 100rem;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     padding: 0px 1.25rem;
-  }
-
-  article img {
-    max-width: 100%;
-    border-radius: var(--border-radius);
-    display: block;
-    max-height: 70vh;
-    object-fit: contain;
   }
 
   .details {
@@ -67,6 +61,19 @@ const { title, type, date, tools, role, platforms, client, developer, images } =
     flex-wrap: wrap;
   }
 
+  .details img, .details iframe {
+    max-width: 100%;
+    border-radius: var(--border-radius);
+    display: block;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+
+  .details iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  
   .overview {
     flex: 0 0 30%;
     padding-left: 1.25rem;
