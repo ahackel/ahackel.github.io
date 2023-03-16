@@ -1,12 +1,13 @@
 ---
 export interface Props {
   src: string;
+  shader?: string;
 }
 
-const { src } = Astro.props;
+const { src, shader } = Astro.props;
 ---
 
-<shader-image data-src={src}>
+<shader-image data-src={src} data-shader={shader}>
   <canvas id="canvas"></canvas>
 </shader-image>
 
@@ -16,7 +17,7 @@ const { src } = Astro.props;
       super();
 
       const src = this.dataset.src;
-      const canvas = this.querySelector<HTMLCanvasElement>("canvas")!;
+      const canvas = this.querySelector<HTMLCanvasElement>("canvas");
 
       // Get canvas and WebGL context
       const gl = canvas.getContext("webgl");
@@ -39,16 +40,15 @@ void main() {
 `;
 
       // Fragment shader source
-      const fragmentShaderSource = `
+      const fragmentShaderSource= this.dataset.shader ?? `
 precision mediump float;
 
 uniform sampler2D u_image;
 varying vec2 v_texCoord;
 
 void main() {
-  vec4 color = texture2D(u_image, v_texCoord);
-  color *= vec4(1.0, 0.0, 1.0, 1.0);
-  gl_FragColor = color;
+    vec4 color = texture2D(u_image, v_texCoord);
+    gl_FragColor = color;  
 }
 `;
 
@@ -131,13 +131,20 @@ void main() {
         const u_image = gl.getUniformLocation(program, "u_image");
         gl.uniform1i(u_image, 0);
 
-        // Draw the image
+        requestAnimationFrame(render);
+      };
+
+      const timeLocation = gl.getUniformLocation(program, "time");
+
+      function render(time){
+        gl.uniform1f(timeLocation, time * 0.001);
         gl.viewport(0, 0, canvas.width, canvas.height);
         gl.clearColor(0, 0, 0, 1);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      };
+        requestAnimationFrame(render);  
+      }
 
       // Error handling
       if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
@@ -162,6 +169,6 @@ void main() {
       width: 20rem;
       margin: 0 auto;
       display: block;
-      border-radius: 100%;
+      /*border-radius: 100%;*/
   }
 </style>
