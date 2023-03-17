@@ -20,8 +20,7 @@ const { src, shader } = Astro.props;
       const canvas = this.querySelector<HTMLCanvasElement>("canvas");
 
       // Get canvas and WebGL context
-      const gl = (canvas.getContext("webgl2", { premultipliedAlpha: false }) ||
-          canvas.getContext("webgl", { premultipliedAlpha: false }));
+      const gl = canvas.getContext("webgl2", { premultipliedAlpha: true });
 
 
       // Set canvas size

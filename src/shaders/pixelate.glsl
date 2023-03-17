@@ -14,7 +14,9 @@ void main() {
     float radius = 0.5;
     float dist = distance(uv, center);
     float alpha = smoothstep(radius, radius - 0.01, dist);
-    color.a *= alpha;
+    
+    // premultiplied alpha is expected!
+    color *= alpha;
     
     gl_FragColor = color;  
 }
