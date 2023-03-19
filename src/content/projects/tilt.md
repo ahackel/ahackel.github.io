@@ -20,7 +20,7 @@ images:
 ---
 Tilt is a puzzle game written in Javascript and published on iOS and as a web app. I created all aspects of this game on my own. I made Tilt open source and it's available in GitHub and as a Chrome Experiment.
 
-[Play Tilt](http://andreashackel.de/tilt")
+[Play Tilt](http://andreashackel.de/tilt)
 
 [Chrome Experiment Page](https://www.chromeexperiments.com/experiment/tilt)
 
