@@ -9,10 +9,10 @@ export interface Props {
 
 const { src, useShader = false } = Astro.props;
 ---
-{ useShader ? <ShaderImage src={src} shader={shader} /> : <img src={src} /> }
+{ useShader ? <ShaderImage src={src} shader={shader} /> : <img class="portrait" src={src} /> }
 
-<style>
-    img {
+<style is:global>
+    img.portrait {
         max-width: 20rem;
         margin: 0 auto;
         display: block;

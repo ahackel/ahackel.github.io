@@ -5,7 +5,7 @@ import Portrait from '../components/Portrait.astro';
 ---
 
 <Layout title="Andreas Hackel">
-    <article>
+    <article class="home">
         <h1>Welcome</h1>
         <Portrait src={image} useShader={true} />
         <p>
@@ -14,8 +14,8 @@ import Portrait from '../components/Portrait.astro';
     </article>
 </Layout>
 
-<style>
-    article {
+<style is:global>
+    article.home {
         padding: 1rem;
         max-width: 50rem;
         margin: auto;

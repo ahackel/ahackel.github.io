@@ -8,10 +8,10 @@ export interface Props {
 const { name } = Astro.props;
 const slug = slugify(name);
 ---
-<a href={`/tags/${slug}`}>{name}</a>
+<a class="tag" href={`/tags/${slug}`}>{name}</a>
 
-<style>
-    a {
+<style is:global>
+    a.tag {
         background: #dd4c4f;
         color: #fff;
         padding: 1px 6px;
@@ -24,7 +24,7 @@ const slug = slugify(name);
         opacity: 0.85;
     }
 
-    a:hover {
+    a.tag:hover {
         opacity: 1;
         text-decoration: none;
     }

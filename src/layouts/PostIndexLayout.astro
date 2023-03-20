@@ -60,13 +60,14 @@ const sortedPosts = filteredPosts.sort((a, b) => {
     </div>
 </Layout>
 
-<style>
+<style is:global>
     .tag-container {
         padding: 0 16px;
     }
     
     .post-container {
         display: grid;
+        grid-gap: 16px;
         gap: 16px;
         padding: 0 16px;
         margin: 16px 0;
