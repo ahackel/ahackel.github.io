@@ -23,7 +23,9 @@ const { href, title, body, img } = Astro.props;
         border-radius: var(--border-radius);
         text-decoration: none;
         overflow: hidden;
+        display: -webkit-flex;
         display: flex;
+        -webkit-flex-direction: column;
         flex-direction: column;
     }
 
