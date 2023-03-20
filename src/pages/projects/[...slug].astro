@@ -56,9 +56,11 @@ const { title, type, date, tools, role, platforms, client, developer, publisher,
 
   .details {
     width: 100%;
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: row;
     flex-direction: row;
-    gap: 1em;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
   }
 
@@ -68,6 +70,7 @@ const { title, type, date, tools, role, platforms, client, developer, publisher,
     display: block;
     max-height: 70vh;
     object-fit: contain;
+    margin-bottom: 1em;
   }
 
   .details iframe {
