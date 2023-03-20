@@ -16,12 +16,15 @@ const { src, shader } = Astro.props;
     constructor() {
       super();
 
-      const src = this.dataset.src;
+      const src = this.dataset.src!;
       const canvas = this.querySelector<HTMLCanvasElement>("canvas");
+      if (!canvas)
+        throw new Error("Canvas not found");
 
       // Get canvas and WebGL context
       const gl = canvas.getContext("webgl2", { premultipliedAlpha: true });
-
+      if (!gl)
+        throw new Error("WebGL not supported");
 
       // Set canvas size
       canvas.width = 512;
@@ -54,8 +57,10 @@ void main() {
 `;
 
       // Create, compile, and attach the shaders
-      function createShader(gl, type, source) {
+      function createShader(gl: WebGL2RenderingContext, type: number, source: string) {
         const shader = gl.createShader(type);
+        if (!shader)
+          throw new Error("Shader not created");
         gl.shaderSource(shader, source);
         gl.compileShader(shader);
         return shader;
@@ -73,6 +78,8 @@ void main() {
       );
 
       const program = gl.createProgram();
+      if (!program)
+        throw new Error("Program not created");
       gl.attachShader(program, vertexShader);
       gl.attachShader(program, fragmentShader);
       gl.linkProgram(program);
@@ -137,7 +144,7 @@ void main() {
 
       const timeLocation = gl.getUniformLocation(program, "time");
 
-      function render(time){
+      function render(time: any){
         gl.uniform1f(timeLocation, time * 0.001);
         gl.viewport(0, 0, canvas.width, canvas.height);
         gl.clearColor(0, 0, 0, 0);
