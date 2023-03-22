@@ -1,28 +1,34 @@
----
-export interface Props {
-  src: string;
-  shader?: string;
-}
+<script lang="ts">
+    import {afterUpdate, beforeUpdate, onMount} from 'svelte';
+    export let src: string;
+    export let shaderUrl: string;
 
-var { src, shader } = Astro.props;
----
+    let canvas: HTMLCanvasElement;
+    let shader: string;
 
-<canvas id="canvas" data-src={src} data-shader={shader} />
-
-<script type="text/javascript">
-  window.addEventListener("DOMContentLoaded", (event) => {
-      var canvas = document.getElementById("canvas");
+  beforeUpdate(async () => {
+    if (shaderUrl) {
+      const response = await fetch(shaderUrl);
+      const newShader = await response.text();
+      console.log(`Loaded shader: ${shaderUrl}`)
+      updateCanvas(newShader);
+    } else {
+      updateCanvas("");
+    }
+  });
+  
+  function updateCanvas(fragmentShader: string)
+  {
+      if (fragmentShader === shader)
+        return;
       
-      if (!canvas)
-        throw new Error("Canvas not found");
-
+      shader = fragmentShader;
+      
       // Get canvas and WebGL context
-      var gl = canvas.getContext("webgl", { premultipliedAlpha: true });
+      let gl = canvas.getContext("webgl", { premultipliedAlpha: true });
       if (!gl)
         throw new Error("WebGL not supported");
 
-      var src = canvas.dataset.src;
-      
       // Set canvas size
       canvas.width = 512;
       canvas.height = 512;
@@ -41,7 +47,7 @@ void main() {
 `;
 
       // Fragment shader source
-      var fragmentShaderSource= canvas.dataset.shader || `
+      var fragmentShaderSource = fragmentShader || `
 precision mediump float;
 
 uniform sampler2D u_image;
@@ -163,8 +169,10 @@ void main() {
       if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
         console.error(gl.getProgramInfoLog(program));
       }
-    });
+    }
 </script>
+
+<canvas bind:this={canvas} on:click />
 
 <style is:global>
   canvas {

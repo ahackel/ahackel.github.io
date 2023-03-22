@@ -1,3 +1,5 @@
+// Adds a pixelation effect to the image.
+
 precision mediump float;
 
 uniform float time;

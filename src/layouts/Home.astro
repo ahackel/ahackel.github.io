@@ -1,13 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import image from '../images/andreashackel.png';
-import Portrait from '../components/Portrait.astro';
+import image from '../images/andreashackel.png?url';
+import Portrait from '../components/Portrait.svelte';
+
+const shaderUrls = Object.entries(import.meta.glob('/public/shaders/*.glsl', {as: 'url'})).map(x => x[0]);
+console.log(shaderUrls)
 ---
 
 <Layout title="Andreas Hackel">
     <article class="home">
         <h1>Welcome</h1>
-        <Portrait src={image} useShader={true} />
+        <Portrait src={image} shaderUrls={shaderUrls} client:load />
         <p>
             <slot />
         </p>

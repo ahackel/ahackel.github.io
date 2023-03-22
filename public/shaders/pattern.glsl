@@ -1,3 +1,4 @@
+// Adds a halftone effect to the image
 precision mediump float;
 
 uniform float time;
@@ -12,7 +13,6 @@ float circleMask(vec2 uv) {
 }
 
 void main() {
-    // halftone pattern effect from image texture
     float sinTime = 0.5 + 0.5 * sin(time * 1.1);
     float raster = 200.0;
     vec2 uv = v_texCoord;
