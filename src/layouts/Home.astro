@@ -4,7 +4,7 @@ import image from '../images/andreashackel.png?url';
 import Portrait from '../components/Portrait.svelte';
 
 const rawShaders = await import.meta.glob('/public/shaders/*.glsl', {as: 'url'});
-const shaderUrls: string[] = Object.entries(rawShaders).map(([path, url]) => path);
+const shaderUrls: string[] = Object.entries(rawShaders).map(([path, url]) => path.replace('/public', ''));
 ---
 
 <Layout title="Andreas Hackel">
