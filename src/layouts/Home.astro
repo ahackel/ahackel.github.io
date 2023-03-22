@@ -3,14 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import image from '../images/andreashackel.png?url';
 import Portrait from '../components/Portrait.svelte';
 
-const shaderUrls = Object.entries(import.meta.glob('/public/shaders/*.glsl', {as: 'url'})).map(x => x[0]);
-console.log(shaderUrls)
+const rawShaders = await import.meta.glob('/public/shaders/*.glsl', {as: 'url'});
+const shaderUrls: string[] = Object.entries(rawShaders).map(([path, url]) => path);
 ---
 
 <Layout title="Andreas Hackel">
     <article class="home">
         <h1>Welcome</h1>
-        <Portrait src={image} shaderUrls={shaderUrls} client:load />
+            <Portrait src={image} shaderUrls={shaderUrls} client:load />
         <p>
             <slot />
         </p>

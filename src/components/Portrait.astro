@@ -1,15 +1,11 @@
 ---
-import ShaderImage from "./ShaderImage.astro";
-import shader from "../shaders/pattern.glsl?raw";
-
 export interface Props {
 	src: string;
-    useShader?: boolean;
 }
 
 const { src, useShader = false } = Astro.props;
 ---
-{ useShader ? <ShaderImage src={src} shader={shader} /> : <img class="portrait" src={src} /> }
+<img class="portrait" src={src} />
 
 <style is:global>
     img.portrait {
